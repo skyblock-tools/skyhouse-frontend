@@ -38,6 +38,13 @@
       }
       this.$nextTick(function () {
         announce("Skyhouse is currently in beta. Report all bugs to the team. Thanks!", 1)
+        document.addEventListener("scroll", function() {
+          if(window.scrollY < 56) {
+            window.navbar.styles = "margin-top: -" + window.scrollY + "px;"
+          }else {
+            window.navbar.styles = "margin-top: -" + 56 + "px;"
+          }
+        })
       })
     }
   }
