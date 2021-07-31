@@ -1,8 +1,8 @@
 
 <template>
   <Announcement/>
-  <Header _page="3"/>
-  <Flipper/>
+  <Header/>
+  <router-view />
 </template>
 
 
@@ -10,7 +10,7 @@
 <script>
 import Announcement from './components/Announcement.vue'
 import Header from './components/Header.vue'
-import Flipper from "./components/Flipper/Flipper.vue";
+import Flipper from "./views/Flipper.vue";
 
 export default {
   name: "App",

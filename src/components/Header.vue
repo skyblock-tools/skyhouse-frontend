@@ -5,18 +5,11 @@
     </div>
     <div class="flex-1 px-2 mx-2">
       <div class="items-stretch hidden lg:flex">
-        <a class="btn btn-ghost btn-sm rounded-btn pagelink">
-          Home
+        <a class="btn btn-ghost btn-sm rounded-btn pagelink" v-for="route in routes" :key="route.name"
+        :style="route.name == $route.name ? 'background-color: rgb(66, 65, 81);' : ''">
+          <router-link :to="route.path">{{ route.name }}</router-link>
         </a>
-        <a class="btn btn-ghost btn-sm rounded-btn pagelink">
-          Discord
-        </a>
-        <a class="btn btn-ghost btn-sm rounded-btn pagelink">
-          Flipper
-        </a>
-        <a class="btn btn-ghost btn-sm rounded-btn pagelink">
-          Skyhouse+
-        </a>
+
       </div>
     </div>
     <SearchBar/>
@@ -39,11 +32,6 @@
       </div>
     </div>
   </div>
-  <component is="style">
-    .pagelink:nth-child({{ page }}) {
-      background-color: rgb(66, 65, 81);
-    }
-  </component>
   <div class="spacer" style="height: 66px"></div>
 </template>
 
@@ -52,15 +40,16 @@
   export default {
     name: "Header",
     components: {SearchBar},
-    props: {
-      _page: String
-    },
     data() {
       return {
         classname: "",
         styles: "",
-        page: this._page
       };
+    },
+    computed: {
+      routes() {
+        return this.$router.options.routes.filter(x => x.includeInHeader);
+      }
     },
     mounted() {
       window.navbar = this

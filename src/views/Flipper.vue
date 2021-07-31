@@ -9,9 +9,9 @@
 </template>
 
 <script>
-import Sidebar from './Sidebar.vue'
-import FlipGrid from "./FlipGrid.vue";
-import Unauthorized from "./Unauthorized.vue";
+import Sidebar from '../components/Flipper/Sidebar.vue'
+import FlipGrid from "../components/Flipper/FlipGrid.vue";
+import Unauthorized from "../components/Flipper/Unauthorized.vue";
 
 export default {
   name: "Flipper",
