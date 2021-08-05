@@ -30,7 +30,7 @@ export default {
 <style>
 .sidebar {
   width: 330px;
-  max-height: calc(100% - 122px);
+  max-height: calc(100% - 66px);
   z-index: 2;
 }
 

@@ -13,8 +13,8 @@
         <p class="mb-5" v-if="mode == 2">
           Skyhouse Flipper requires you to be a member of the skyblock.tools discord server.
         </p>
-        <button class="btn btn-ghost" v-if="mode == 1">Login via discord</button>
-        <button class="btn btn-ghost" v-if="mode == 2">Join discord</button>
+        <button class="btn btn-ghost" v-if="mode == 1" @click="loginButton">Login via discord</button>
+        <button class="btn btn-ghost" v-if="mode == 2" @click="joinDiscord">{{ txt }}</button>
       </div>
     </div>
   </div>
@@ -24,23 +24,37 @@
   export default {
     name: "Unauthorized",
     props: {
-      _mode: String
+      _mode: Number
     },
     data() {
       return {
-        mode: this._mode
+        mode: this._mode,
+        txt: "Join Discord"
       }
+  },
+  created() {
+    window.unauthorized = this;
+  },
+  methods: {
+    loginButton(){
+      this.$root.navbar.loginButton()
     },
-    mounted() {
-      window.unauthorized = this;
+    joinDiscord(){
+      if(this.txt == "I've joined"){
+        window.location.reload()
+      }else{
+        window.open("https://discord.gg/JSg9UvuYQs", '_blank').focus();
+        this.txt = "I've joined"
+      }
     }
   }
+}
 </script>
 
 <style>
   .hero {
     background-image: url("../../assets/shaderbg.webp");
-    height: calc(100% - 122px);
+    height: calc(100% - 66px);
   }
 
   .hero-content {

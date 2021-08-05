@@ -22,13 +22,13 @@ export default {
   },
   data(){
     return {
-      mode: "1"
+      mode: this.$root.navbar.mode
     }
   },
   computed: {
     isLoggedIn(){
-      this.mode = 1
-      return true
+      console.log(this.$root.test)
+      return this.$root.navbar.isLoggedIn
     },
     isNotLoggedIn() {
       return !this.isLoggedIn

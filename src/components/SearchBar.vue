@@ -3,7 +3,7 @@
     <div class="flex-1 lg:flex-none">
       <div class="form-control">
         <input type="text" placeholder="Player/Item Search" class="input input-ghost w-96">
-        <div class="searchSuggestions bg-neutral w-96">
+        <div class="searchSuggestions bg-neutral w-96 shadow-lg">
 <!--          <div class="badge badge-primary badge-lg block">Recent</div>-->
           <div class="badge badge-secondary badge-lg block">Suggested</div>
           <div class="searchItem">
@@ -18,7 +18,7 @@
             <img class="bg-neutral itemShowcase" src="https://sky.lea.moe/head/dab779bbccc849f88273d844e8ca2f3a67a1699cb216c0a11b44326ce2cc20"/>
             <span class="itemDesc">Blue Whale <div style="color: rgb(245,158,11)" class="badge rarity">LEGENDARY</div></span>
           </div>
-          😲 <a href="#" class="link link-accent">Surprise Me!</a>
+          <a href="#" class="link link-accent">Surprise Me!</a>
         </div>
       </div>
     </div>
@@ -48,7 +48,7 @@
 .searchSuggestions {
   height: 310px;
   z-index: 999;
-  margin-top: 50px;
+  margin-top: 48px;
   position: absolute;
   opacity: 0;
   transition: 0.2s ease;
@@ -58,6 +58,7 @@
   scrollbar-width: auto;
   scrollbar-color: #6d6c7a #22212c;
   pointer-events: none;
+  border: 1px solid rgb(48,47,61);
 }
 
 .searchSuggestions::-webkit-scrollbar {

@@ -8,6 +8,12 @@ const routes = [
     component: Flipper,
     includeInHeader: true,
   },
+  {
+    path: "/oauth_callback",
+    redirect: to => {
+      window.location.href = window.location.href.split('?')[0]+"index.html?"+window.location.href.split('?')[1]
+    }
+  }
 ]
 
 const router = createRouter({

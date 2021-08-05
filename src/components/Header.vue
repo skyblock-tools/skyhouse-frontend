@@ -25,11 +25,12 @@
       </button>
     </div>
     <div class="flex-none">
-      <div class="avatar">
+      <div class="avatar" v-if="isLoggedIn || mode == 2">
         <div class="rounded-full w-10 h-10 m-1 cursor-pointer">
-          <img src="https://cdn.discordapp.com/avatars/822988756516077608/c1393ce78379e53018a0617a59a11838.webp?size=512">
+          <img :src="pfpSrc">
         </div>
       </div>
+      <button class="btn btn-ghost" v-if="isNotLoggedIn && mode == 1" @click="loginButton">Login via discord</button>
     </div>
   </div>
   <div class="spacer" style="height: 66px"></div>
@@ -44,15 +45,48 @@
       return {
         classname: "",
         styles: "",
-      };
+        pfpSrc: "",
+        mode: JSON.parse(window.localStorage.getItem("user_session_data")) == null ? 1 : JSON.parse(window.localStorage.getItem("user_session_data")).privilege_level == 0 ? 2 : 1
+      }
     },
     computed: {
       routes() {
         return this.$router.options.routes.filter(x => x.includeInHeader);
+      },
+      isLoggedIn(){
+        const session_data = JSON.parse(window.localStorage.getItem("user_session_data"))
+        if(session_data == null){
+          return false
+        }
+        this.pfpSrc = "https://cdn.discordapp.com/avatars/"+session_data["discord_info"].id+"/"+session_data["discord_info"].avatar+".webp?size=512"
+        if(this.mode == 2){
+          return false
+        }
+        return true
+      },
+      isNotLoggedIn(){
+        return !this.isLoggedIn
       }
     },
-    mounted() {
-      window.navbar = this
+    created() {
+      this.$root.navbar = this
+    },
+    methods: {
+      loginButton(){
+        const win = window.open("https://discord.com/api/oauth2/authorize?client_id=841014617895469096&redirect_uri=http%3A%2F%2Flocalhost%3A3000%2Foauth_callback%2F&response_type=code&scope=identify%20guilds","Login",'height=500,width=500');
+        const pollTimer = window.setInterval(function() {
+          if (win.closed !== false) {
+            window.clearInterval(pollTimer);
+            window.location.reload(false);
+          }
+        }, 200);
+      }
     }
   }
 </script>
+
+<style>
+.navbar {
+  z-index: 999;
+}
+</style>
