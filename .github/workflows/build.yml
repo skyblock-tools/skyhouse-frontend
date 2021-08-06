@@ -18,4 +18,5 @@ jobs:
       run: rm -rf dist
     - name: Npm install and build
       run: |
+        npm install
         npm run build
