@@ -27,7 +27,6 @@ export default {
   },
   computed: {
     isLoggedIn(){
-      console.log(this.$root.test)
       return this.$root.navbar.isLoggedIn
     },
     isNotLoggedIn() {

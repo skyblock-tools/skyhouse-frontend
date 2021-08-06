@@ -59,6 +59,8 @@ async function reloadToken() {
 export function start(grid){
     getData(grid)
     setInterval(() => {
-        getData(grid)
+        if (document.hidden) {
+            getData(grid)
+        }
     }, JSON.parse(window.localStorage.getItem("user_session_data")).privilege_level == 1 ? 10000 : 5000)
 }
