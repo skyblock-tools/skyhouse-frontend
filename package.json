@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "scripts": {
     "dev": "vite",
-    "build": "vite build && mkdir dist/skyhouse/ && mv dist/* dist/skyhouse",
+    "build": "vite build && mkdir dist/skyhouse/ && mv -v dist/* dist/skyhouse/",
     "serve": "vite preview"
   },
   "dependencies": {
