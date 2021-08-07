@@ -3,7 +3,7 @@ import Flipper from '../views/Flipper.vue';
 
 const routes = [
   {
-    path: "/skyhouse/flipper",
+    path: "/skyhouse" + "/flipper",
     name: "Flipper",
     component: Flipper,
     includeInHeader: true,
