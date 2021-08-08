@@ -9,7 +9,9 @@
   "dependencies": {
     "@chenfengyuan/vue-countdown": "^2.0.0-rc",
     "daisyui": "^1.10.0",
+    "fuzzysort": "^1.1.4",
     "mosha-vue-toastify": "^1.0.17",
+    "string-similarity": "^4.0.4",
     "vue": "^3.1.5",
     "vue-router": "^4.0.10"
   },

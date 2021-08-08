@@ -8,17 +8,16 @@
           <div class="badge badge-secondary badge-lg block">Suggested</div>
           <div class="searchItem">
             <img class="bg-neutral itemShowcase playerShowcase" src="https://mc-heads.net/avatar/johndoesdev"/>
-            <span class="itemDesc">JohnDoesDev <div class="badge rarity devBadge">DEVELOPER</div></span>
+            <span class="itemDesc">JohnDoesDev <div class="badge badge-outline rarity devBadge">DEVELOPER</div></span>
           </div>
           <div class="searchItem">
-            <img class="bg-neutral itemShowcase" src="https://sky.lea.moe/item/CRYSTAL_FRAGMENT"/>
-            <span class="itemDesc">Crystal Fragment <div style="color: rgb(124,58,170)" class="badge rarity">EPIC</div></span>
+            <img class="bg-neutral itemShowcase" src="https://hypixel-skyblock-item-images.pages.dev/CRYSTAL_FRAGMENT.webp"/>
+            <span class="itemDesc">Crystal Fragment <div style="color: rgb(124,58,170)" class="badge badge-outline rarity">EPIC</div></span>
           </div>
           <div class="searchItem">
-            <img class="bg-neutral itemShowcase" src="https://sky.lea.moe/head/dab779bbccc849f88273d844e8ca2f3a67a1699cb216c0a11b44326ce2cc20"/>
-            <span class="itemDesc">Blue Whale <div style="color: rgb(245,158,11)" class="badge rarity">LEGENDARY</div></span>
+            <img class="bg-neutral itemShowcase" src="https://hypixel-skyblock-item-images.pages.dev/BLUE_WHALE_PET.webp"/>
+            <span class="itemDesc">Blue Whale <div style="color: rgb(245,158,11)" class="badge badge-outline rarity">LEGENDARY</div></span>
           </div>
-          <a href="#" class="link link-accent">Surprise Me!</a>
         </div>
       </div>
     </div>
@@ -113,7 +112,6 @@
   margin-top: 30px;
   margin-right: 10px;
   font-weight: 600;
-  box-shadow: 0 0 3px #000;
 }
 
 .devBadge {

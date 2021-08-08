@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import Flipper from '../views/Flipper.vue';
+import Oauth2Callback from "../views/Oauth2Callback.vue";
 
 const routes = [
   {
@@ -9,10 +10,10 @@ const routes = [
     includeInHeader: true,
   },
   {
-    path: "/oauth_callback",
-    redirect: to => {
-      window.location.href = window.location.href.split('?')[0]+"index.html?"+window.location.href.split('?')[1]
-    }
+    path: "/skyhouse" + "/oauth_callback",
+    name: "Oauth2Callback",
+    component: Oauth2Callback,
+    includeInHeader: false,
   }
 ]
 

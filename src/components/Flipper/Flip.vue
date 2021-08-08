@@ -4,7 +4,7 @@
     <div class="card bg-neutral shadow-lg">
 
       <figure>
-        <img class="itemImage bg-base-300" src="https://sky.lea.moe/item/CRYSTAL_FRAGMENT">
+        <img class="itemImage bg-base-300" :src="image">
       </figure>
       <div class="card-body">
         <h2 class="card-title">{{ name }}
@@ -74,6 +74,7 @@ export default {
   },
   props: {
     name: String,
+    image: String,
     rarity: String,
     auction_id: String,
     price: String,
