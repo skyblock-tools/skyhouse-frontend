@@ -2,7 +2,7 @@
   <div>
     <div class="flex-1 lg:flex-none">
       <div class="form-control">
-        <input type="text" placeholder="Player/Item Search" class="input input-ghost w-96">
+        <input type="text" placeholder="Player/Item Search" class="input input-ghost w-96 searchBar">
         <div class="searchSuggestions bg-neutral w-96 shadow-lg">
 <!--          <div class="badge badge-primary badge-lg block">Recent</div>-->
           <div class="badge badge-secondary badge-lg block">Suggested</div>
@@ -39,7 +39,7 @@
 </script>
 
 <style>
-.input:focus + .searchSuggestions {
+.searchBar:focus + .searchSuggestions {
   opacity: 1;
   pointer-events: all;
 }
@@ -75,7 +75,7 @@
   border: 5px solid #22212c;
 }
 
-.input {
+.searchBar {
   border-radius: .5rem .5rem 0 0 !important;
 }
 

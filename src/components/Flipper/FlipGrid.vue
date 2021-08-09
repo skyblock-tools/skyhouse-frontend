@@ -1,4 +1,5 @@
 <template>
+  <Lore/>
   <div class="grid flip-grid text-center">
     <Flip v-for="flip in flips" :name="flip.item_name" :rarity="flip.tier" :auction_id="flip.uuid" :price="flip.price.toLocaleString()" :resell_price="flip.sell_price.toLocaleString()" :profit="flip.profit.toLocaleString()" :house_quantity="flip.houseQuantity.toLocaleString()" :pet_candies="flip.petCandyUsed" :ends="flip.end" :image="'https://hypixel-skyblock-item-images.pages.dev/'+flip.item_image"/>
   </div>
@@ -6,11 +7,12 @@
 
 <script>
 import Flip from "./Flip.vue"
+import Lore from ".././Lore.vue"
 import * as engine from './engine.js'
 
 export default {
   name: "FlipGrid",
-  components: {Flip},
+  components: {Flip, Lore},
   data(){
     return {
       flips: []
@@ -43,6 +45,5 @@ export default {
 .flip-grid::-webkit-scrollbar-thumb {
   background-color: #6d6c7a;
   border-radius: 10px;
-  border: 5px solid rgb(48,47,61);
-}
+  border: 5px solid rgb(48,47,61);}
 </style>

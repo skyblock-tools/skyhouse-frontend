@@ -26,9 +26,7 @@
     </div>
     <div class="flex-none">
       <div class="avatar" v-if="isLoggedIn || mode == 2">
-        <div class="rounded-full w-10 h-10 m-1 cursor-pointer">
-          <img :src="pfpSrc">
-        </div>
+        <Avatar :pfpSrc="pfpSrc"/>
       </div>
       <button class="btn btn-ghost" v-if="isNotLoggedIn && mode == 1" @click="loginButton">Login via discord</button>
     </div>
@@ -38,9 +36,10 @@
 
 <script>
   import SearchBar from "./SearchBar.vue";
+  import Avatar from "./Avatar.vue";
   export default {
     name: "Header",
-    components: {SearchBar},
+    components: {Avatar, SearchBar},
     data() {
       return {
         classname: "",
@@ -73,7 +72,7 @@
     },
     methods: {
       loginButton(){
-        const win = window.open("https://discord.com/api/oauth2/authorize?client_id=841014617895469096&redirect_uri=http%3A%2F%2Flocalhost%3A3000%2Foauth_callback%2F&response_type=code&scope=identify%20guilds","Login",'height=500,width=500');
+        const win = window.open("https://discord.com/api/oauth2/authorize?client_id=841014617895469096&redirect_uri=http%3A%2F%2Flocalhost%3A3000%2Foauth_callback%2F&response_type=code&scope=identify%20guilds&prompt=none","Login",'height=500,width=500');
         const pollTimer = window.setInterval(function() {
           if (win.closed !== false) {
             window.clearInterval(pollTimer);

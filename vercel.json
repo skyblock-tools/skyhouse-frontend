@@ -1,6 +1,0 @@
-{
-  "routes": [
-    { "handle": "filesystem" },
-    { "src": "/skyhouse/.*", "dest": "/skyhouse/index.html" }
-  ]
-}

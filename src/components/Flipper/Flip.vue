@@ -2,8 +2,7 @@
   <div class="indicator flipIndicator">
     <div class="indicator-item badge badge-primary justAdded">New</div>
     <div class="card bg-neutral shadow-lg">
-
-      <figure>
+      <figure @mousemove="this.$root.Lore.updateLore" @mouseenter="this.$root.Lore.showLore = true" @mouseleave="this.$root.Lore.showLore = false">
         <img class="itemImage bg-base-300" :src="image">
       </figure>
       <div class="card-body">
@@ -104,7 +103,7 @@ export default {
   height: 400px;
   width: 100%;
   transition: 0.4s ease;
-  overflow: visible;
+  overflow: visible !important;
 }
 
 .itemImage {
