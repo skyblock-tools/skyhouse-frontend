@@ -19,6 +19,7 @@ export default {
     }
   },
   mounted() {
+    this.$root.flipgrid = this;
     engine.start(this)
   }
 }

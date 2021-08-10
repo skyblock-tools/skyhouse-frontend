@@ -54,6 +54,13 @@ export default {
         } else {
           this.value = prevVal;
         }
+        let num = parseInt(this.value);
+        if(this.value.includes("m")){
+          num = num * 1000000
+        } else if(this.value.includes("k")){
+          num = num * 1000
+        }
+        window.minProf = num;
       });
       let prevVal1 = "";
       document.getElementsByClassName("allowSpecial")[1].addEventListener('input', function (e) {
@@ -62,6 +69,13 @@ export default {
         } else {
           this.value = prevVal1;
         }
+        let num = parseInt(this.value);
+        if(this.value.includes("m")){
+          num = num * 1000000
+        } else if(this.value.includes("k")){
+          num = num * 1000
+        }
+        window.maxPrice = num;
       });
     });
   }

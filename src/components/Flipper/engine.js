@@ -8,7 +8,7 @@ const itemsKeys = Array.from(items.keys());
 
 function getData(grid) {
     console.log("Attempting to fetch flips...")
-    fetch('https://api.skyblock.tools/api/flip/auctions?filters=11&minProfit=-1&maxPrice=-1&minQuantity=10&sort=1', {
+    fetch('https://api.skyblock.tools/api/flip/auctions?filters=11&minProfit=-1&maxPrice=-1&minQuantity=10&sort=1&minProfit='+window.minProf+'&maxPrice='+window.maxPrice, {
         method: 'GET',
         withCredentials: true,
         credentials: 'include',
@@ -41,7 +41,6 @@ function getData(grid) {
                 for(let i = 0; i < res.flips.length; i++){
                     const bestItemImageMatch = items.get(stringSimilarity.findBestMatch(res.flips[i].item_name, itemsKeys).bestMatch.target).replaceAll(" ","_")+".webp"
                     res.flips[i].item_image = bestItemImageMatch
-
                 }
                 flips = res.flips
                 grid.flips = flips

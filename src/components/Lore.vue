@@ -1,9 +1,7 @@
 <template>
 <div class="lore-box" :style="'top: '+top+'px; left: '+left+'px; display: '+(showLore ? 'inline-block': 'none')">
   <div class="lore-body">
-    This is an awesome lore
-    <br />
-    Yes it really is
+    Lore
   </div>
 </div>
 </template>
