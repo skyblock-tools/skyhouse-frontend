@@ -38,9 +38,23 @@ function getData(grid) {
             }
             if(typeof res.flips != "undefined" || res.flips != null){
                 console.log("Flips successfully fetched!")
+                let processedUUIDS = []
+                for(let i = 0; i < grid.flips.length; i++){
+                    if(grid.flips[i].processed === true){
+                        processedUUIDS.push(grid.flips[i].uuid)
+                    }
+                }
                 for(let i = 0; i < res.flips.length; i++){
-                    const bestItemImageMatch = items.get(stringSimilarity.findBestMatch(res.flips[i].item_name, itemsKeys).bestMatch.target).replaceAll(" ","_")+".webp"
-                    res.flips[i].item_image = bestItemImageMatch
+                    const indexOfMatch = processedUUIDS.indexOf(res.flips[i].uuid);
+                    if(indexOfMatch == -1){
+                        const bestItemImageMatch = items.get(stringSimilarity.findBestMatch(res.flips[i].item_name, itemsKeys).bestMatch.target).replaceAll(" ","_")+".webp"
+                        res.flips[i].item_image = bestItemImageMatch
+                        res.flips[i].processed = true
+                    } else {
+                        const prevProcessed = grid.flips.map(e => e.uuid).indexOf(processedUUIDS[indexOfMatch])
+                        res.flips[i].item_image = grid.flips[prevProcessed].item_image
+                        res.flips[i].processed = true
+                    }
                 }
                 flips = res.flips
                 grid.flips = flips
