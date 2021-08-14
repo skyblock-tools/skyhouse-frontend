@@ -72,7 +72,10 @@
     },
     methods: {
       loginButton(){
-        const win = window.open("https://discord.com/api/oauth2/authorize?client_id=841014617895469096&redirect_uri=https%3A%2F%2Fskyblock.tools%2Foauth_callback%2F&response_type=code&scope=identify%20guilds&prompt=none","Login",'height=500,width=500');
+        const url = window.location.href;
+        const { hostname } = new URL(url);
+        let redUri = hostname === "skyblock.tools" ? "https%3A%2F%2Fskyblock.tools%2Foauth_callback%2F" : "http%3A%2F%2Flocalhost%3A3000%2Fskyhouse-v2%2Foauth_callback%2F";
+        const win = window.open("https://discord.com/api/oauth2/authorize?client_id=841014617895469096&redirect_uri="+redUri+"&response_type=code&scope=identify%20guilds&prompt=none","Login",'height=500,width=500');
         const pollTimer = window.setInterval(function() {
           if (win.closed !== false) {
             window.clearInterval(pollTimer);
