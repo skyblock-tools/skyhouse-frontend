@@ -2,6 +2,7 @@
   <Lore/>
   <div class="grid flip-grid text-center">
     <Flip v-for="flip in flips" :name="flip.item_name" :rarity="flip.tier" :auction_id="flip.uuid" :price="flip.price.toLocaleString()" :resell_price="flip.sell_price.toLocaleString()" :profit="flip.profit.toLocaleString()" :house_quantity="flip.houseQuantity.toLocaleString()" :pet_candies="flip.petCandyUsed" :ends="flip.end" :image="'https://hypixel-skyblock-item-images.pages.dev/'+flip.item_image"/>
+    <div class="fg-spacer"></div>
   </div>
 </template>
 
@@ -31,7 +32,7 @@ export default {
   grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
   overflow: auto;
   gap: 30px;
-  padding: 30px 30px;
+  padding: 30px;
 }
 
 .flip-grid::-webkit-scrollbar {
@@ -47,4 +48,8 @@ export default {
   background-color: #6d6c7a;
   border-radius: 10px;
   border: 5px solid rgb(48,47,61);}
+
+.fg-spacer {
+  height: 1px;
+}
 </style>

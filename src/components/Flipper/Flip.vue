@@ -130,6 +130,7 @@ export default {
 .copy-cmd {
   position: absolute;
   bottom: 0;
+  width: 20em !important;
   margin-bottom: 25px !important;
 }
 </style>
