@@ -1,5 +1,5 @@
 <template>
-  <div class="indicator flipIndicator">
+  <div @click="copyToClipboard" class="indicator flipIndicator">
     <div class="indicator-item badge badge-primary justAdded">New</div>
     <div class="card bg-neutral shadow-lg">
       <figure @mousemove="this.$root.Lore.updateLore" @mouseenter="this.$root.Lore.showLore = true" @mouseleave="this.$root.Lore.showLore = false">
@@ -92,6 +92,7 @@ export default {
 <style>
 .flipIndicator {
   width: auto !important;
+  cursor: pointer;
 }
 
 .justAdded {
@@ -105,6 +106,7 @@ export default {
   transition: 0.4s ease;
   overflow: visible !important;
 }
+
 
 .itemImage {
   object-fit: scale-down;
@@ -130,7 +132,7 @@ export default {
 .copy-cmd {
   position: absolute;
   bottom: 0;
-  width: 20em !important;
+  width: 85% !important;
   margin-bottom: 25px !important;
 }
 </style>

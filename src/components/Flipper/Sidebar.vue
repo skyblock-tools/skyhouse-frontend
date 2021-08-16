@@ -22,9 +22,9 @@
       <span class="text-xs text-left mb-2 setting-desc">Filter & Sort</span>
 
     </div>
-    <div class="toggleHide bg-base-300 shadow-lg" v-on:click="hideSidebar">
-      Hide
-    </div>
+<!--    <div class="toggleHide bg-base-300 shadow-lg" v-on:click="hideSidebar">-->
+<!--      Hide-->
+<!--    </div>-->
   </div>
 </template>
 
