@@ -1,26 +1,27 @@
-
 <template>
-  <Header/>
+  <Header />
   <div class="watermark font-thin">
     b217-BETA
-    <div class="text-lg whitespace-normal">You are using a non-public, beta version of Skyhouse.</div>
+    <div class="text-lg whitespace-normal">
+      You are using a non-public, beta version of Skyhouse.
+    </div>
   </div>
   <router-view />
 </template>
 
-
-
 <script>
-import Header from './components/Header.vue'
-import Flipper from "./views/Flipper.vue"
+import Header from "./components/Header.vue";
+import Flipper from "./views/Flipper.vue";
+import Profile from "./views/Profile.vue";
 
 export default {
   name: "App",
   components: {
     Flipper,
+    Profile,
     Header,
-  }
-}
+  },
+};
 </script>
 
 <style>
@@ -28,7 +29,9 @@ export default {
 @tailwind components;
 @tailwind utilities;
 
-html,body,#app {
+html,
+body,
+#app {
   height: 100%;
 }
 

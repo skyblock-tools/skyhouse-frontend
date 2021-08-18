@@ -1,8 +1,9 @@
-import { createRouter, createWebHistory } from 'vue-router';
-import Flipper from '../views/Flipper.vue';
+import { createRouter, createWebHistory } from "vue-router";
+import Flipper from "../views/Flipper.vue";
+import Profile from "../views/Profile.vue";
 import OAuth2Callback from "../views/OAuth2Callback.vue";
 
-const base = "/skyhouse-v2"
+const base = "/skyhouse-v2";
 
 const routes = [
   {
@@ -12,16 +13,22 @@ const routes = [
     includeInHeader: true,
   },
   {
+    path: base + "/profile",
+    name: "Profile",
+    component: Profile,
+    includeInHeader: true,
+  },
+  {
     path: base + "/oauth_callback",
     name: "Oauth2Callback",
     component: OAuth2Callback,
     includeInHeader: false,
-  }
-]
+  },
+];
 
 const router = createRouter({
   history: createWebHistory(),
   routes,
-})
+});
 
 export default router;

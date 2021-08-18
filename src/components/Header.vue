@@ -6,7 +6,7 @@
     <div class="flex-1 px-2 mx-2">
       <div class="items-stretch hidden lg:flex">
         <a class="btn btn-ghost btn-sm rounded-btn pagelink" v-for="route in routes" :key="route.name"
-        :style="route.name == $route.name ? 'background-color: rgb(66, 65, 81);' : ''">
+        :style="route.name == $route.name ? 'background-color: rgb(66, 65, 81); margin-left: 5px;' : 'margin-left: 5px;'">
           <router-link :to="route.path">{{ route.name }}</router-link>
         </a>
 
