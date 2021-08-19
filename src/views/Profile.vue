@@ -1,24 +1,21 @@
 <template>
   <div class="box" v-if="isLoggedIn">
-    <div class="grid layout">
-      <Sidebar/>
-      <FlipGrid/>
+    <div class="layout">
+      <ProfileGrid/>
     </div>
   </div>
-  <Unauthorized v-if="isNotLoggedIn" :_mode="mode" :name="Flipper" />
+  <Unauthorized v-if="isNotLoggedIn" :_mode="mode" :name="name" />
 </template>
 
 <script>
-import Sidebar from '../components/Flipper/Sidebar.vue'
-import FlipGrid from "../components/Flipper/FlipGrid.vue";
+import ProfileGrid from "../components/Profile/ProfileGrid.vue";
 import Unauthorized from "../components/Auth/Unauthorized.vue";
 
 export default {
-  name: "Flipper",
+  name: "Profile",
   components: {
     Unauthorized,
-    FlipGrid,
-    Sidebar
+    ProfileGrid,
   },
   data(){
     return {

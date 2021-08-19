@@ -7,11 +7,11 @@
           This page requires Authorization
         </h1>
         <p class="mb-5" v-if="mode == 1">
-          Skyhouse Flipper requires you to be logged into a valid discord account and a member of the skyblock.tools
+          Skyhouse {{ name }} requires you to be logged into a valid discord account and a member of the skyblock.tools
           discord server.
         </p>
         <p class="mb-5" v-if="mode == 2">
-          Skyhouse Flipper requires you to be a member of the skyblock.tools discord server.
+          Skyhouse {{ name }} requires you to be a member of the skyblock.tools discord server.
         </p>
         <button class="btn btn-ghost" v-if="mode == 1" @click="loginButton">Login via discord</button>
         <button class="btn btn-ghost" v-if="mode == 2" @click="joinDiscord">{{ txt }}</button>
@@ -24,12 +24,14 @@
   export default {
     name: "Unauthorized",
     props: {
-      _mode: Number
+      _mode: Number,
+      name: String
     },
     data() {
       return {
         mode: this._mode,
-        txt: "Join Discord"
+        txt: "Join Discord",
+        name: this.name
       }
   },
   created() {
