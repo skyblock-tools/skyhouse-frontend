@@ -16,7 +16,7 @@ const routes = [
     path: base + "/profile",
     name: "Profile",
     component: Profile,
-    includeInHeader: true,
+    includeInHeader: false,
   },
   {
     path: base + "/oauth_callback",

@@ -29,7 +29,7 @@
           </vue-countdown>
         </p>
         <div class="justify-center card-actions bottom-0">
-          <button class="copy-cmd btn btn-ghost" @click="copyToClipboard">Copy Command</button>
+          <button class="copy-cmd btn btn-ghost">Copy Command</button>
         </div>
       </div>
     </div>
@@ -90,6 +90,10 @@ export default {
 </script>
 
 <style>
+.justAdded {
+  display: none !important;
+}
+
 .flipIndicator {
   width: auto !important;
   cursor: pointer;

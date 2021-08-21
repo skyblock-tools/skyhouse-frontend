@@ -13,6 +13,9 @@
         <a @click="logout">
           Logout
         </a>
+        <a>
+          <router-link to="/skyhouse-v2/profile">Profile</router-link>
+        </a>
       </li>
     </ul>
   </div>
