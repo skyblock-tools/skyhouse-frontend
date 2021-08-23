@@ -1,6 +1,6 @@
 <template>
   <div class="sidebar bg-neutral flex flex-col h-screen shadow-lg text-center ">
-    <div class="p-6 card bordered flip-type">
+    <div class="p-6 pb-0 card bordered flip-type">
       <span class="text-xs text-left mb-1 setting-desc">Flip Type</span>
       <div class="tabs">
         <a class="tab tab-bordered text-xs">Auction to BIN</a>
@@ -9,18 +9,58 @@
       </div>
 
     </div>
-    <div class="p-6 card bordered minprofmaxprice">
+    <div class="p-6 pb-0 card bordered minprofmaxprice">
       <span class="text-xs text-left mb-2 setting-desc">Min Profit & Max Price</span>
       <div class="form-control m-1 mb-2">
         <input pattern="[0-9MKmk]*" type="text" placeholder="Minimum Profit (ex. 1m)" class="input input-bordered allowSpecial">
       </div>
       <div class="form-control m-1 mb-2">
-        <input pattern="[0-9MKmk]*" type="text" placeholder="Maximum Price (ex. 10m)" class="input input-bordered allowSpecial">
+        <input pattern="[0-9MKmk\.]*" type="text" placeholder="Maximum Price (ex. 10m)" class="input input-bordered allowSpecial">
       </div>
     </div>
-    <div class="p-6 card bordered">
-      <span class="text-xs text-left mb-2 setting-desc">Filter & Sort</span>
-
+    <div class="p-6 pb-0 card bordered filters">
+      <span class="text-xs text-left mb-2 setting-desc">Filter</span>
+      <div class="card bordered">
+        <div class="form-control">
+          <label class="label">
+            <span class="label-text">Hide Cakesouls</span>
+            <input type="checkbox" checked class="toggle">
+          </label>
+        </div>
+        <div class="form-control">
+          <label class="label">
+            <span class="label-text">Hide Skins</span>
+            <input type="checkbox" checked class="toggle">
+          </label>
+        </div>
+        <div class="form-control">
+          <label class="label">
+            <span class="label-text">Hide Recombobulated</span>
+            <input type="checkbox" class="toggle">
+          </label>
+        </div>
+        <div class="form-control">
+          <label class="label">
+            <span class="label-text">Hide Pets</span>
+            <input type="checkbox" class="toggle">
+          </label>
+        </div>
+      </div>
+      <div class="form-control">
+        <label class="label">
+          <span class="label-text">Hide Enchanted Books</span>
+          <input type="checkbox" class="toggle">
+        </label>
+      </div>
+    </div>
+    <div class="p-6 pb-0 card bordered sort">
+      <span class="text-xs text-left mb-2 setting-desc">Sort</span>
+      <select class="select select-bordered w-full max-w-xs">
+        <option selected="">Higher profit</option>
+        <option>Higher % profit</option>
+        <option>Lower price</option>
+        <option>Higher house quantity</option>
+      </select>
     </div>
 <!--    <div class="toggleHide bg-base-300 shadow-lg" v-on:click="hideSidebar">-->
 <!--      Hide-->
@@ -135,5 +175,13 @@ export default {
 
 .minprofmaxprice {
   max-height: 170px;
+}
+
+.filters {
+  max-height: 280px;
+}
+
+.sort {
+  max-height: 120px;
 }
 </style>

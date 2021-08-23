@@ -105,7 +105,7 @@ export default {
 
 <style>
 .lore-box {
-  background-color: rgba(16, 1, 16, 0.80);
+  background-color: rgba(16, 1, 16, 0.90);
   position: fixed;
   z-index: 10000;
   border-radius: .2rem;

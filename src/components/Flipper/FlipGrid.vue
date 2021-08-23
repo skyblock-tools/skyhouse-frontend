@@ -1,8 +1,11 @@
 <template>
+  <div class="loader-container" v-if="!ready">
+    <div class="lds-ripple"><div></div><div></div></div>
+  </div>
   <Lore/>
-    <div class="grid flip-grid text-center">
-      <Flip v-for="flip in flips" :name="flip.item_name" :rarity="flip.tier" :auction_id="flip.uuid" :price="flip.price.toLocaleString()" :resell_price="(flip.price+flip.profit).toLocaleString()" :profit="flip.profit.toLocaleString()" :house_quantity="flip.quantity.toLocaleString()" :pet_candies="flip.petCandyUsed" :ends="flip.end" :image="'https://hypixel-skyblock-item-images.pages.dev/'+flip.item_image" :lore="flip.lore"/>
-    </div>
+  <div class="grid flip-grid text-center">
+    <Flip v-for="flip in flips" :name="flip.item_name" :rarity="flip.tier" :auction_id="flip.uuid" :price="flip.price.toLocaleString()" :resell_price="(flip.price+flip.profit).toLocaleString()" :profit="flip.profit.toLocaleString()" :house_quantity="flip.quantity.toLocaleString()" :pet_candies="flip.petCandyUsed" :ends="flip.end" :image="flip.head_url" :lore="flip.display_name+'\n'+flip.lore"/>
+  </div>
 </template>
 
 <script>
@@ -15,7 +18,8 @@ export default {
   components: {Flip, Lore},
   data(){
     return {
-      flips: []
+      flips: [],
+      ready: false,
     }
   },
   mounted() {
@@ -48,4 +52,47 @@ export default {
   border-radius: 10px;
   border: 5px solid rgb(48,47,61);
 }
+
+.loader-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-left: 165px;
+  transform: translate(-50%, -50%);
+}
+
+
+.lds-ripple {
+  display: inline-block;
+  position: relative;
+  width: 80px;
+  height: 80px;
+}
+.lds-ripple div {
+  position: absolute;
+  border: 4px solid rgb(213,204,255);
+  opacity: 1;
+  border-radius: 50%;
+  animation: lds-ripple 1s cubic-bezier(0, 0.2, 0.8, 1) infinite;
+}
+.lds-ripple div:nth-child(2) {
+  animation-delay: -0.5s;
+}
+@keyframes lds-ripple {
+  0% {
+    top: 36px;
+    left: 36px;
+    width: 0;
+    height: 0;
+    opacity: 1;
+  }
+  100% {
+    top: 0px;
+    left: 0px;
+    width: 72px;
+    height: 72px;
+    opacity: 0;
+  }
+}
+
 </style>
