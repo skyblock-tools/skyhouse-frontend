@@ -1,8 +1,8 @@
 <template>
   <Lore/>
-  <div class="grid flip-grid text-center">
-    <Flip v-for="flip in flips" :name="flip.item_name" :rarity="flip.tier" :auction_id="flip.uuid" :price="flip.price.toLocaleString()" :resell_price="flip.sell_price.toLocaleString()" :profit="flip.profit.toLocaleString()" :house_quantity="flip.houseQuantity.toLocaleString()" :pet_candies="flip.petCandyUsed" :ends="flip.end" :image="'https://hypixel-skyblock-item-images.pages.dev/'+flip.item_image"/>
-  </div>
+    <div class="grid flip-grid text-center">
+      <Flip v-for="flip in flips" :name="flip.item_name" :rarity="flip.tier" :auction_id="flip.uuid" :price="flip.price.toLocaleString()" :resell_price="(flip.price+flip.profit).toLocaleString()" :profit="flip.profit.toLocaleString()" :house_quantity="flip.quantity.toLocaleString()" :pet_candies="flip.petCandyUsed" :ends="flip.end" :image="'https://hypixel-skyblock-item-images.pages.dev/'+flip.item_image" :lore="flip.lore"/>
+    </div>
 </template>
 
 <script>
@@ -29,9 +29,9 @@ export default {
 .flip-grid {
   max-height: calc(100% - 66px);
   grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
-  overflow: auto;
   gap: 30px;
   padding: 30px;
+  overflow: auto;
 }
 
 .flip-grid::-webkit-scrollbar {

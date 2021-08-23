@@ -1,5 +1,5 @@
 <template>
-  <div class="hero">
+  <div class="hero" :class="mode == 1 ? 'notLoggedIn' : 'notInServer'">
     <div class="hero-overlay bg-opacity-60"></div>
     <div class="text-center hero-content text-neutral-content">
       <div class="max-w-md">
@@ -55,8 +55,15 @@
 
 <style>
   .hero {
-    background-image: url("../../assets/shaderbg.webp");
     height: calc(100% - 66px);
+  }
+
+  .notLoggedIn {
+    background-image: url("../../assets/shaderbg.webp");
+  }
+
+  .notInServer {
+    background-image: url("../../assets/shaderbg1.webp");
   }
 
   .hero-content {

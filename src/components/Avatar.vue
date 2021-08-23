@@ -13,13 +13,10 @@
         <a @click="logout">
           Logout
         </a>
-        <a>
-          <router-link to="/skyhouse-v2/profile">Profile</router-link>
-        </a>
+        <router-link to="/skyhouse-v2/profile">Profile</router-link>
       </li>
     </ul>
   </div>
-
 </template>
 
 <script>

@@ -19,6 +19,24 @@
         </div>
       </div>
     </div>
+    <div class="form-control mt-4">
+      <div class="border-white">
+        <label class="label">
+          <span class="label-text">Generated Mod Token</span>
+        </label>
+        <div class="tokenboxcont">
+          <input type="text" :value="token" readonly="true" class="input cursor-pointer focus:shadow-none tokenbox">
+          <button class="btn btn-square btn-sm bg-base-100 border-none hover:bg-base-100 no-animation p-4 mt-1">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"><path class="fill-current" d="M13.5 2c-5.629 0-10.212 4.436-10.475 10h-3.025l4.537 5.917 4.463-5.917h-2.975c.26-3.902 3.508-7 7.475-7 4.136 0 7.5 3.364 7.5 7.5s-3.364 7.5-7.5 7.5c-2.381 0-4.502-1.119-5.876-2.854l-1.847 2.449c1.919 2.088 4.664 3.405 7.723 3.405 5.798 0 10.5-4.702 10.5-10.5s-4.702-10.5-10.5-10.5z"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <label class="label">
+        <span class="label-text">Username</span>
+      </label>
+      <input type="text" placeholder="Minecraft Username/IGN" class="input input-bordered">
+    </div>
   </div>
   <Unauthorized v-if="isNotLoggedIn" :_mode="mode" :name="name" />
 </template>
@@ -78,5 +96,17 @@ export default {
 
 .profCardActions {
   margin-top: 0 !important;
+}
+
+.tokenbox {
+  border-right: 0;
+  border-top-right-radius: 0 !important;
+  border-bottom-right-radius: 0 !important;
+  width: calc(100% - 40px);
+}
+
+.tokenboxcont {
+  border: 1px solid hsla(251,100%,90%,0.2);
+  border-radius: .5rem;
 }
 </style>

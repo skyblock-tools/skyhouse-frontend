@@ -1,8 +1,8 @@
 <template>
   <div @click="copyToClipboard" class="indicator flipIndicator">
     <div class="indicator-item badge badge-primary justAdded">New</div>
-    <div class="card bg-neutral shadow-lg">
-      <figure @mousemove="this.$root.Lore.updateLore" @mouseenter="this.$root.Lore.showLore = true" @mouseleave="this.$root.Lore.showLore = false">
+    <div class="flipCard card bg-neutral shadow-lg">
+      <figure @mousemove="this.$root.Lore.updateLore" @mouseenter="this.$root.Lore.showLore = true; this.$root.Lore.lore = this.lore; this.$root.Lore.parseLore()" @mouseleave="this.$root.Lore.showLore = false">
         <img class="itemImage bg-base-300" :src="image">
       </figure>
       <div class="card-body">
@@ -81,7 +81,8 @@ export default {
     profit: String,
     pet_candies: Number,
     house_quantity: String,
-    ends: Number
+    ends: Number,
+    lore: String,
   },
   components: {
     VueCountdown
@@ -104,13 +105,12 @@ export default {
   right: 15px !important;
 }
 
-.card {
+.flipCard {
   height: 400px;
   width: 100%;
   transition: 0.4s ease;
   overflow: visible !important;
 }
-
 
 .itemImage {
   object-fit: scale-down;
@@ -120,16 +120,16 @@ export default {
   border-radius: .5rem .5rem 0 0;
 }
 
-.card-body {
+.flipCard .card-body {
   padding-top: 0 !important;
   padding-bottom: 10px !important;
 }
 
-.card-body {
+.flipCard .card-body {
   text-align: left;
 }
 
-.card-actions {
+.flipCard .card-actions {
   flex-grow: 1;
 }
 
@@ -138,5 +138,9 @@ export default {
   bottom: 0;
   width: 85% !important;
   margin-bottom: 25px !important;
+}
+
+.flipIndicator:last-child {
+  padding-bottom: 30px;
 }
 </style>

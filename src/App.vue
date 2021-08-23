@@ -1,10 +1,7 @@
 <template>
   <Header />
   <div class="watermark font-thin">
-    b217-BETA
-    <div class="text-lg whitespace-normal">
-      You are using a non-public, beta version of Skyhouse.
-    </div>
+    v0.8_beta
   </div>
   <router-view />
 </template>
@@ -36,17 +33,17 @@ body,
 }
 
 .watermark {
-  font-size: 5vw;
+  font-size: 1vw;
   position: fixed;
   z-index: 99999999;
-  top: 95%;
-  left: 95%;
-  transform: translate(-95%, -95%);
-  pointer-events: none;
-  color: red;
+  bottom: 0;
   opacity: 0.5;
+  pointer-events: none;
+  color: white;
   white-space: nowrap;
-  padding: 10px 10px;
-  border: 3px solid red;
+  padding-left: 10px;
+  padding-right: 10px;
+  background: palevioletred;
+  right: 0;
 }
 </style>

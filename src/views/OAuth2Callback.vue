@@ -11,7 +11,7 @@ export default {
     }
     const query = new URLSearchParams(window.location.search);
     const code = query.get('code');
-    httpGetAsync(`https://api.skyblock.tools/auth/oauth/create?code=${code}`, function(res){
+    httpGetAsync(`https://api.skyblock.tools/api/auth/oauth/discord?code=${code}`, function(res){
       const json = res.responseText;
       window.localStorage.setItem('user_session_data', json);
       window.close();
@@ -19,7 +19,7 @@ export default {
 
     function httpGetAsync(theUrl, callback) {
       if(window.location.href.includes("localhost")) {
-        theUrl += "&redirectUri=http%3A%2F%2Flocalhost%3A3000%2Fskyhouse-v2%2Foauth_callback%2F";
+        theUrl += "&redirect_uri=http%3A%2F%2Flocalhost%3A3000%2Fskyhouse-v2%2Foauth_callback%2F";
       }
       var xmlHttp = new XMLHttpRequest();
       xmlHttp.onreadystatechange = function() {

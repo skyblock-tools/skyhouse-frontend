@@ -8,7 +8,7 @@ const itemsKeys = Array.from(items.keys());
 
 function getData(grid) {
     console.log("Attempting to fetch flips...")
-    fetch('https://api.skyblock.tools/api/flip/auctions?filters=11&minProfit=-1&maxPrice=-1&minQuantity=10&sort=1&minProfit='+window.minProf+'&maxPrice='+window.maxPrice, {
+    fetch('https://api.skyblock.tools/api/flips?filters=11&min_quantity=10&sort=1&min_profit='+(typeof window.minProf == 'undefined' || isNaN(window.minProf) ? -1 : window.minProf)+'&max_price='+(typeof window.maxPrice == 'undefined' || isNaN(window.maxPrice) ? -1 : window.maxPrice), {
         method: 'GET',
         withCredentials: true,
         credentials: 'include',
@@ -37,6 +37,7 @@ function getData(grid) {
                 reloadToken()
             }
             if(typeof res.flips != "undefined" || res.flips != null){
+                console.log(res.flips);
                 console.log("Flips successfully fetched!")
                 let processedUUIDS = []
                 for(let i = 0; i < grid.flips.length; i++){
@@ -47,12 +48,12 @@ function getData(grid) {
                 for(let i = 0; i < res.flips.length; i++){
                     const indexOfMatch = processedUUIDS.indexOf(res.flips[i].uuid);
                     if(indexOfMatch == -1){
-                        const bestItemImageMatch = items.get(stringSimilarity.findBestMatch(res.flips[i].item_name, itemsKeys).bestMatch.target).replaceAll(" ","_")+".webp"
-                        res.flips[i].item_image = bestItemImageMatch
+                        // const bestItemImageMatch = items.get(stringSimilarity.findBestMatch(res.flips[i].item_name, itemsKeys).bestMatch.target).replaceAll(" ","_")+".webp"
+                        // res.flips[i].item_image = bestItemImageMatch
                         res.flips[i].processed = true
                     } else {
                         const prevProcessed = grid.flips.map(e => e.uuid).indexOf(processedUUIDS[indexOfMatch])
-                        res.flips[i].item_image = grid.flips[prevProcessed].item_image
+                        // res.flips[i].item_image = grid.flips[prevProcessed].item_image
                         res.flips[i].processed = true
                     }
                 }
@@ -64,7 +65,7 @@ function getData(grid) {
 
 async function reloadToken() {
     console.log("Reloading Token...")
-    await fetch(`https://api.skyblock.tools/auth/token/create?` + new URLSearchParams({
+    await fetch(`https://api.skyblock.tools/api/auth/token/create?` + new URLSearchParams({
         webtoken: JSON.parse(window.localStorage.getItem("user_session_data")).refresh_token
     }))
         .then(res => {
@@ -76,6 +77,7 @@ async function reloadToken() {
             return res.json()
         })
         .then(res => {
+            console.log(res)
             const temp = JSON.parse(window.localStorage.getItem("user_session_data"))
             temp.refresh_token = res.refresh_token
             temp.access_token = res.access_token
