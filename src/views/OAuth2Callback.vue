@@ -14,6 +14,7 @@ export default {
     httpGetAsync(`https://api.skyblock.tools/api/auth/oauth/discord?code=${code}`, function(res){
       const json = res.responseText;
       window.localStorage.setItem('user_session_data', json);
+      alert(0);
       window.close();
     });
 

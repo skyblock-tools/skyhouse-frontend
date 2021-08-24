@@ -1,7 +1,7 @@
 <template>
   <Header />
   <div class="watermark font-thin">
-    v0.8_beta
+    v2.8_beta
   </div>
   <router-view />
 </template>

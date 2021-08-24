@@ -1,5 +1,15 @@
 <template>
-  <div class="sidebar bg-neutral flex flex-col h-screen shadow-lg text-center ">
+  <div class="sidebar bg-neutral flex flex-col h-screen shadow-lg text-center">
+    <div class="p-6 pb-0" v-if="!isPlus">
+      <div class="alert alert-warning">
+        <div class="flex-1">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="w-6 h-6 mx-2 stroke-current">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path>
+          </svg>
+          <label>500k+ Flips are restricted to members with Skyhouse+</label>
+        </div>
+      </div>
+    </div>
     <div class="p-6 pb-0 card bordered flip-type">
       <span class="text-xs text-left mb-1 setting-desc">Flip Type</span>
       <div class="tabs">
@@ -18,39 +28,40 @@
         <input pattern="[0-9MKmk\.]*" type="text" placeholder="Maximum Price (ex. 10m)" class="input input-bordered allowSpecial">
       </div>
     </div>
-    <div class="p-6 pb-0 card bordered filters">
-      <span class="text-xs text-left mb-2 setting-desc">Filter</span>
-      <div class="card bordered">
+    <div class="p-6 pb-0 card bordered filters" :style="isPlus ? false : 'cursor: not-allowed !important;'">
+      <span class="text-xs text-left mb-2 setting-desc">Filters <svg v-if="!isPlus" class="inline fill-current w-5 h-3.5 -mt-1" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M18 10v-4c0-3.313-2.687-6-6-6s-6 2.687-6 6v4h-3v14h18v-14h-3zm-5 7.723v2.277h-2v-2.277c-.595-.347-1-.984-1-1.723 0-1.104.896-2 2-2s2 .896 2 2c0 .738-.404 1.376-1 1.723zm-5-7.723v-4c0-2.206 1.794-4 4-4 2.205 0 4 1.794 4 4v4h-8z"/></svg></span>
+      <div class="filters-blocked-msg" v-if="!isPlus">Skyhouse+ Required</div>
+      <div class="card bordered" :style="isPlus ? false : 'filter: blur(2px);'">
         <div class="form-control">
           <label class="label">
             <span class="label-text">Hide Cakesouls</span>
-            <input type="checkbox" checked class="toggle">
+              <input type="checkbox" :disabled="!isPlus" checked class="toggle">
           </label>
         </div>
         <div class="form-control">
           <label class="label">
             <span class="label-text">Hide Skins</span>
-            <input type="checkbox" checked class="toggle">
+              <input type="checkbox" :disabled="!isPlus" checked class="toggle">
           </label>
         </div>
         <div class="form-control">
           <label class="label">
             <span class="label-text">Hide Recombobulated</span>
-            <input type="checkbox" class="toggle">
+              <input type="checkbox" :disabled="!isPlus" class="toggle">
           </label>
         </div>
         <div class="form-control">
           <label class="label">
             <span class="label-text">Hide Pets</span>
-            <input type="checkbox" class="toggle">
+              <input type="checkbox" :disabled="!isPlus" class="toggle">
           </label>
         </div>
-      </div>
-      <div class="form-control">
-        <label class="label">
-          <span class="label-text">Hide Enchanted Books</span>
-          <input type="checkbox" class="toggle">
-        </label>
+        <div class="form-control">
+          <label class="label">
+            <span class="label-text">Hide Enchanted Books</span>
+            <input type="checkbox" :disabled="!isPlus" class="toggle">
+          </label>
+        </div>
       </div>
     </div>
     <div class="p-6 pb-0 card bordered sort">
@@ -83,6 +94,11 @@ export default {
         document.getElementsByClassName('toggleHide')[0].innerText = 'Hide'
         document.getElementsByClassName('toggleHide')[0].style.marginLeft = '305px';
       }
+    }
+  },
+  data(){
+    return {
+      isPlus: JSON.parse(window.localStorage.getItem('user_session_data')).privilege_level > 1
     }
   },
   mounted() {
@@ -183,5 +199,17 @@ export default {
 
 .sort {
   max-height: 120px;
+}
+
+.filters-blocked-msg {
+  position: absolute;
+  top: 60%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1000000;
+  font-size: 1.5rem;
+  white-space: nowrap;
+  font-weight: 500;
+  color: white;
 }
 </style>

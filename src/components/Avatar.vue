@@ -10,10 +10,10 @@
           </span>
       </li>
       <li>
+        <router-link to="/skyhouse-v2/profile">Profile</router-link>
         <a @click="logout">
           Logout
         </a>
-        <router-link to="/skyhouse-v2/profile">Profile</router-link>
       </li>
     </ul>
   </div>
