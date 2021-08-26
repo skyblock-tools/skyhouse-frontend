@@ -25,8 +25,8 @@
           <span class="label-text">Generated Mod Token</span>
         </label>
         <div class="tokenboxcont">
-          <input type="text" :value="token" readonly="true" class="input cursor-pointer focus:shadow-none tokenbox">
-          <button class="btn btn-square btn-sm bg-base-100 border-none hover:bg-base-100 no-animation p-4 mt-1">
+          <input type="text" @click="copyToken" :value="token" readonly="true" class="input cursor-pointer focus:shadow-none tokenbox">
+          <button @click="genToken" class="btn btn-square btn-sm bg-base-100 border-none hover:bg-base-100 no-animation p-4 mt-1">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"><path class="fill-current" d="M13.5 2c-5.629 0-10.212 4.436-10.475 10h-3.025l4.537 5.917 4.463-5.917h-2.975c.26-3.902 3.508-7 7.475-7 4.136 0 7.5 3.364 7.5 7.5s-3.364 7.5-7.5 7.5c-2.381 0-4.502-1.119-5.876-2.854l-1.847 2.449c1.919 2.088 4.664 3.405 7.723 3.405 5.798 0 10.5-4.702 10.5-10.5s-4.702-10.5-10.5-10.5z"/></svg>
           </button>
         </div>
@@ -43,7 +43,8 @@
 
 <script>
 import Unauthorized from "../components/Auth/Unauthorized.vue";
-import {v4 as uuidv4} from "uuid";
+import { createToast } from 'mosha-vue-toastify'
+import 'mosha-vue-toastify/dist/style.css'
 
 export default {
   name: "Profile",
@@ -74,13 +75,59 @@ export default {
     }
     this.profile = "https://cdn.discordapp.com/avatars/"+session_data["discord_info"].id+"/"+session_data["discord_info"].avatar+".webp?size=512";
     this.username = session_data["discord_info"].username
-    this.token = uuidv4().replace("-", "");
     this.skyhousePlus = session_data["privilege_level"] > 1;
+    this.$nextTick(function() {
+      fetch("https://api.skyblock.tools/api/auth/token/info",
+          {
+            method: 'GET',
+            withCredentials: true,
+            credentials: 'include',
+            headers: {
+              Authorization: 'Bearer ' + JSON.parse(window.localStorage.getItem("user_session_data")).access_token
+            }
+          }).then(x => x.json()).then(x => {
+        this.token = x["mod_refresh_token"]
+      })
+    })
   },
   methods: {
-    regenToken() {
-      this.token = uuidv4().replace("-", "");
+    genToken(){
+      this.token = "Please wait..."
+      fetch("https://api.skyblock.tools/api/auth/token/reset",
+          {
+            method: 'DELETE',
+            withCredentials: true,
+            credentials: 'include',
+            headers: {
+              Authorization: 'Bearer ' + JSON.parse(window.localStorage.getItem("user_session_data")).access_token
+            }
+          }).then(x => x.json()).then(x => {
+            this.token = x["mod_refresh_token"]
+        createToast('Generated new mod token',
+            {
+              position: 'bottom-right',
+              type: 'success',
+              transition: 'zoom',
+              showIcon: true
+            })
+      })
     },
+    copyToken() {
+      var TempText = document.createElement("input")
+      TempText.value = this.token
+      document.body.appendChild(TempText)
+      TempText.select()
+
+      document.execCommand("copy")
+      document.body.removeChild(TempText)
+      createToast('Copied to Clipboard',
+          {
+            position: 'bottom-right',
+            type: 'success',
+            transition: 'zoom',
+            showIcon: true
+          })
+    }
   }
 }
 </script>

@@ -10,10 +10,11 @@ function sleep(ms) {
 }
 
 let isRatelimited = false;
+let isReloading = false;
 
 function getData(grid) {
     console.log("Attempting to fetch flips...")
-    fetch('https://api.skyblock.tools/api/flips?min_quantity=10&sort=1&min_profit='+(typeof grid.$root.minProf == 'undefined' || isNaN(grid.$root.minProf) ? -1 : grid.$root.minProf)+'&max_price='+(typeof grid.$root.maxPrice == 'undefined' || isNaN(grid.$root.maxPrice) ? -1 : grid.$root.maxPrice), {
+    fetch('https://api.skyblock.tools/api/flips?min_quantity=10&sort=1&min_profit='+(typeof grid.$root.minProf == 'undefined' || isNaN(grid.$root.minProf) ? -1 : grid.$root.minProf)+'&max_price='+(typeof grid.$root.maxPrice == 'undefined' || isNaN(grid.$root.maxPrice) ? -1 : grid.$root.maxPrice + "&bin="+(grid.$root.Sidebar.flipType == 1)+"&auction="+(grid.$root.Sidebar.flipType == 0)), {
         method: 'GET',
         withCredentials: true,
         credentials: 'include',
@@ -85,6 +86,7 @@ function getData(grid) {
 }
 
 async function reloadToken() {
+    isReloading = true;
     console.log("Reloading Token...")
     await fetch(`https://api.skyblock.tools/api/auth/token/create?` + new URLSearchParams({
         webtoken: JSON.parse(window.localStorage.getItem("user_session_data")).refresh_token
@@ -108,6 +110,7 @@ async function reloadToken() {
             }
             window.localStorage.setItem("user_session_data", JSON.stringify(temp))
             console.log("Successfully reloaded token!")
+            isReloading = false;
             plUpdated && window.location.reload()
         })
 }
@@ -115,7 +118,7 @@ async function reloadToken() {
 export function start(grid){
     getData(grid)
     setInterval(() => {
-        if (!document.hidden && !isRatelimited) {
+        if (!document.hidden && !isRatelimited && !isReloading) {
             getData(grid)
         }
     }, JSON.parse(window.localStorage.getItem("user_session_data")).privilege_level == 1 ? 10000 : 5000)

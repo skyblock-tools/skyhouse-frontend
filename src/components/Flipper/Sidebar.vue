@@ -14,16 +14,16 @@
       <div class="p-6 pb-0 card bordered flip-type">
         <span class="text-xs text-left mb-1 setting-desc">Flip Type</span>
         <div class="tabs ml-auto mr-auto">
-          <a class="tab tab-bordered text-xs">Auction to BIN</a>
-          <a class="tab tab-bordered text-xs tab-active">BIN to BIN</a>
-          <a class="tab tab-bordered text-xs">Craftflips</a>
+          <a class="tab tab-bordered text-xs" @click="flipType = 0" :class="flipType == 0 ? 'tab-active' : null">Auction to BIN</a>
+          <a class="tab tab-bordered text-xs" @click="flipType = 1" :class="flipType == 1 ? 'tab-active' : null">BIN to BIN</a>
+          <a class="tab tab-bordered text-xs pointer-events-none" @click="flipType = 2" :class="flipType == 2 ? 'tab-active' : null">Soon™</a>
         </div>
 
       </div>
       <div class="p-6 pb-0 card bordered minprofmaxprice">
         <span class="text-xs text-left mb-2 setting-desc">Min Profit & Max Price</span>
         <div class="form-control m-1 mb-2">
-          <input pattern="[0-9MKmk]*" type="text" placeholder="Minimum Profit (ex. 1m)" class="input input-bordered allowSpecial">
+          <input pattern="[0-9MKmk\.]*" type="text" placeholder="Minimum Profit (ex. 1m)" class="input input-bordered allowSpecial">
         </div>
         <div class="form-control m-1 mb-2">
           <input pattern="[0-9MKmk\.]*" type="text" placeholder="Maximum Price (ex. 10m)" class="input input-bordered allowSpecial">
@@ -120,10 +120,12 @@ export default {
   },
   data(){
     return {
-      isPlus: JSON.parse(window.localStorage.getItem('user_session_data')).privilege_level > 1
+      isPlus: JSON.parse(window.localStorage.getItem('user_session_data')).privilege_level > 1,
+      flipType: 1,
     }
   },
   mounted() {
+    this.$root.Sidebar = this
     this.$nextTick(function () {
       let prevVal = "";
       const input = document.getElementsByClassName("allowSpecial")[0];
@@ -133,7 +135,7 @@ export default {
         } else {
           input.value = prevVal;
         }
-        let num = parseInt(input.value);
+        let num = parseFloat(input.value.replace(/[^\d.-]/g,''));
         if(input.value.includes("m")){
           num = num * 1000000
         } else if(input.value.includes("k")){
@@ -149,7 +151,7 @@ export default {
         } else {
           input1.value = prevVal1;
         }
-        let num = parseInt(input1.value);
+        let num = parseFloat(input1.value.replace(/[^\d.-]/g,''));
         if(input1.value.includes("m")){
           num = num * 1000000
         } else if(input1.value.includes("k")){
