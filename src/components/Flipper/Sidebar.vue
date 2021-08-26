@@ -1,81 +1,84 @@
 <template>
   <div class="sidebar bg-neutral flex flex-col h-screen shadow-lg text-center">
-    <div class="p-6 pb-0" v-if="!isPlus">
-      <div class="alert alert-warning">
-        <div class="flex-1">
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="w-6 h-6 mx-2 stroke-current">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path>
-          </svg>
-          <label>500k+ Flips are restricted to members with Skyhouse+</label>
+    <div class="overflow-auto opts-cont">
+      <div class="p-6 pb-0" v-if="!isPlus">
+        <div class="alert alert-warning">
+          <div class="flex-1">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="w-6 h-6 mx-2 stroke-current">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path>
+            </svg>
+            <label>500k+ Flips are restricted to members with Skyhouse+</label>
+          </div>
         </div>
       </div>
-    </div>
-    <div class="p-6 pb-0 card bordered flip-type">
-      <span class="text-xs text-left mb-1 setting-desc">Flip Type</span>
-      <div class="tabs">
-        <a class="tab tab-bordered text-xs">Auction to BIN</a>
-        <a class="tab tab-bordered text-xs tab-active">BIN to BIN</a>
-        <a class="tab tab-bordered text-xs">Craftflips</a>
-      </div>
+      <div class="p-6 pb-0 card bordered flip-type">
+        <span class="text-xs text-left mb-1 setting-desc">Flip Type</span>
+        <div class="tabs ml-auto mr-auto">
+          <a class="tab tab-bordered text-xs">Auction to BIN</a>
+          <a class="tab tab-bordered text-xs tab-active">BIN to BIN</a>
+          <a class="tab tab-bordered text-xs">Craftflips</a>
+        </div>
 
-    </div>
-    <div class="p-6 pb-0 card bordered minprofmaxprice">
-      <span class="text-xs text-left mb-2 setting-desc">Min Profit & Max Price</span>
-      <div class="form-control m-1 mb-2">
-        <input pattern="[0-9MKmk]*" type="text" placeholder="Minimum Profit (ex. 1m)" class="input input-bordered allowSpecial">
       </div>
-      <div class="form-control m-1 mb-2">
-        <input pattern="[0-9MKmk\.]*" type="text" placeholder="Maximum Price (ex. 10m)" class="input input-bordered allowSpecial">
+      <div class="p-6 pb-0 card bordered minprofmaxprice">
+        <span class="text-xs text-left mb-2 setting-desc">Min Profit & Max Price</span>
+        <div class="form-control m-1 mb-2">
+          <input pattern="[0-9MKmk]*" type="text" placeholder="Minimum Profit (ex. 1m)" class="input input-bordered allowSpecial">
+        </div>
+        <div class="form-control m-1 mb-2">
+          <input pattern="[0-9MKmk\.]*" type="text" placeholder="Maximum Price (ex. 10m)" class="input input-bordered allowSpecial">
+        </div>
       </div>
-    </div>
-    <div class="p-6 pb-0 card bordered filters" :style="isPlus ? false : 'cursor: not-allowed !important;'">
-      <span class="text-xs text-left mb-2 setting-desc">Filters <svg v-if="!isPlus" class="inline fill-current w-5 h-3.5 -mt-1" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M18 10v-4c0-3.313-2.687-6-6-6s-6 2.687-6 6v4h-3v14h18v-14h-3zm-5 7.723v2.277h-2v-2.277c-.595-.347-1-.984-1-1.723 0-1.104.896-2 2-2s2 .896 2 2c0 .738-.404 1.376-1 1.723zm-5-7.723v-4c0-2.206 1.794-4 4-4 2.205 0 4 1.794 4 4v4h-8z"/></svg></span>
-      <div class="filters-blocked-msg" v-if="!isPlus">Skyhouse+ Required</div>
-      <div class="card bordered" :style="isPlus ? false : 'filter: blur(2px);'">
-        <div class="form-control">
-          <label class="label">
-            <span class="label-text">Hide Cakesouls</span>
+      <div class="p-6 pb-0 card bordered filters" :style="isPlus ? false : 'cursor: not-allowed !important;'">
+        <span class="text-xs text-left mb-2 setting-desc">Filters <svg v-if="!isPlus" class="inline fill-current w-5 h-3.5 -mt-1" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M18 10v-4c0-3.313-2.687-6-6-6s-6 2.687-6 6v4h-3v14h18v-14h-3zm-5 7.723v2.277h-2v-2.277c-.595-.347-1-.984-1-1.723 0-1.104.896-2 2-2s2 .896 2 2c0 .738-.404 1.376-1 1.723zm-5-7.723v-4c0-2.206 1.794-4 4-4 2.205 0 4 1.794 4 4v4h-8z"/></svg></span>
+        <div class="filters-blocked-msg" v-if="!isPlus">Skyhouse+ Required</div>
+        <div class="card bordered" :style="isPlus ? false : 'filter: blur(2px);'">
+          <div class="form-control">
+            <label class="label">
+              <span class="label-text">Hide Cakesouls</span>
               <input type="checkbox" :disabled="!isPlus" checked class="toggle">
-          </label>
-        </div>
-        <div class="form-control">
-          <label class="label">
-            <span class="label-text">Hide Skins</span>
+            </label>
+          </div>
+          <div class="form-control">
+            <label class="label">
+              <span class="label-text">Hide Skins</span>
               <input type="checkbox" :disabled="!isPlus" checked class="toggle">
-          </label>
-        </div>
-        <div class="form-control">
-          <label class="label">
-            <span class="label-text">Hide Recombobulated</span>
+            </label>
+          </div>
+          <div class="form-control">
+            <label class="label">
+              <span class="label-text">Hide Recombobulated</span>
               <input type="checkbox" :disabled="!isPlus" class="toggle">
-          </label>
-        </div>
-        <div class="form-control">
-          <label class="label">
-            <span class="label-text">Hide Pets</span>
+            </label>
+          </div>
+          <div class="form-control">
+            <label class="label">
+              <span class="label-text">Hide Pets</span>
               <input type="checkbox" :disabled="!isPlus" class="toggle">
-          </label>
-        </div>
-        <div class="form-control">
-          <label class="label">
-            <span class="label-text">Hide Enchanted Books</span>
-            <input type="checkbox" :disabled="!isPlus" class="toggle">
-          </label>
+            </label>
+          </div>
+          <div class="form-control">
+            <label class="label">
+              <span class="label-text">Hide Enchanted Books</span>
+              <input type="checkbox" :disabled="!isPlus" class="toggle">
+            </label>
+          </div>
         </div>
       </div>
+      <div class="p-6 pb-0 card bordered sort">
+        <span class="text-xs text-left mb-2 setting-desc">Sort</span>
+        <select class="select select-bordered w-full max-w-xs">
+          <option selected="">Higher profit</option>
+          <option>Higher % profit</option>
+          <option>Lower price</option>
+          <option>Higher house quantity</option>
+        </select>
+      </div>
     </div>
-    <div class="p-6 pb-0 card bordered sort">
-      <span class="text-xs text-left mb-2 setting-desc">Sort</span>
-      <select class="select select-bordered w-full max-w-xs">
-        <option selected="">Higher profit</option>
-        <option>Higher % profit</option>
-        <option>Lower price</option>
-        <option>Higher house quantity</option>
-      </select>
-    </div>
-<!--    <div class="toggleHide bg-base-300 shadow-lg" v-on:click="hideSidebar">-->
-<!--      Hide-->
-<!--    </div>-->
+
+    <!--    <div class="toggleHide bg-base-300 shadow-lg" v-on:click="hideSidebar">-->
+    <!--      Hide-->
+    <!--    </div>-->
   </div>
 </template>
 
@@ -94,6 +97,25 @@ export default {
         document.getElementsByClassName('toggleHide')[0].innerText = 'Hide'
         document.getElementsByClassName('toggleHide')[0].style.marginLeft = '305px';
       }
+    },
+    getItemFilterNum: function(removeSkins, removePets, removeRecomb, removeCakeSouls, removeEnchantedBooks) {
+      let num = 0
+      if(removeSkins){
+        num |= Math.pow(2,0)
+      }
+      if(removePets){
+        num |= Math.pow(2,1)
+      }
+      if(removeRecomb){
+        num |= Math.pow(2,2)
+      }
+      if(removeCakeSouls){
+        num |= Math.pow(2,3)
+      }
+      if(removeEnchantedBooks){
+        num |= Math.pow(2,4)
+      }
+      return num
     }
   },
   data(){
@@ -104,34 +126,36 @@ export default {
   mounted() {
     this.$nextTick(function () {
       let prevVal = "";
-      document.getElementsByClassName("allowSpecial")[0].addEventListener('input', function (e) {
-        if (this.checkValidity()) {
-          prevVal = this.value;
+      const input = document.getElementsByClassName("allowSpecial")[0];
+      input.addEventListener('input', () => {
+        if (input.checkValidity()) {
+          prevVal = input.value;
         } else {
-          this.value = prevVal;
+          input.value = prevVal;
         }
-        let num = parseInt(this.value);
-        if(this.value.includes("m")){
+        let num = parseInt(input.value);
+        if(input.value.includes("m")){
           num = num * 1000000
-        } else if(this.value.includes("k")){
+        } else if(input.value.includes("k")){
           num = num * 1000
         }
-        window.minProf = num;
+        this.$root.minProf = num;
       });
       let prevVal1 = "";
-      document.getElementsByClassName("allowSpecial")[1].addEventListener('input', function (e) {
-        if (this.checkValidity()) {
-          prevVal1 = this.value;
+      const input1 = document.getElementsByClassName("allowSpecial")[1];
+      input1.addEventListener('input', () => {
+        if (input1.checkValidity()) {
+          prevVal1 = input1.value;
         } else {
-          this.value = prevVal1;
+          input1.value = prevVal1;
         }
-        let num = parseInt(this.value);
-        if(this.value.includes("m")){
+        let num = parseInt(input1.value);
+        if(input1.value.includes("m")){
           num = num * 1000000
-        } else if(this.value.includes("k")){
+        } else if(input1.value.includes("k")){
           num = num * 1000
         }
-        window.maxPrice = num;
+        this.$root.maxPrice = num;
       });
     });
   }
@@ -140,7 +164,7 @@ export default {
 
 <style>
 .sidebar {
-  width: 330px;
+  width: 350px;
   max-height: calc(100% - 66px);
   z-index: 2;
 }
@@ -186,19 +210,19 @@ export default {
 }
 
 .flip-type {
-  max-height: 80px;
+  height: 80px;
 }
 
 .minprofmaxprice {
-  max-height: 170px;
+  height: 170px;
 }
 
 .filters {
-  max-height: 280px;
+  height: 250px;
 }
 
 .sort {
-  max-height: 120px;
+  height: 120px;
 }
 
 .filters-blocked-msg {
@@ -211,5 +235,20 @@ export default {
   white-space: nowrap;
   font-weight: 500;
   color: white;
+}
+
+.opts-cont::-webkit-scrollbar {
+  width: 16px;
+}
+
+.opts-cont::-webkit-scrollbar-track {
+  background: transparent;
+  border-radius: .5rem;
+}
+
+.opts-cont::-webkit-scrollbar-thumb {
+  background-color: #6d6c7a;
+  border-radius: 10px;
+  border: 5px solid rgb(34,33,44);
 }
 </style>

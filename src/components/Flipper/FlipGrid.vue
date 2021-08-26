@@ -4,7 +4,7 @@
   </div>
   <Lore/>
   <div class="grid flip-grid text-center" v-if="ready">
-    <Flip v-for="flip in flips" :name="flip.item_name" :rarity="flip.tier" :auction_id="flip.uuid" :price="flip.price.toLocaleString()" :resell_price="(flip.price+flip.profit).toLocaleString()" :profit="flip.profit.toLocaleString()" :house_quantity="flip.quantity.toLocaleString()" :pet_candies="flip.petCandyUsed" :ends="flip.end" :image="flip.head_url" :lore="flip.display_name+'\n'+flip.lore"/>
+    <Flip v-for="flip in flips" :name="flip.item_name" :rarity="flip.tier" :auction_id="flip.uuid" :price="flip.price.toLocaleString()" :resell_price="flip.resell_price.toLocaleString()" :profit="flip.profit.toLocaleString()" :house_quantity="flip.quantity.toLocaleString()" :pet_candies="flip.petCandyUsed" :ends="flip.end" :image="flip.head_url" :lore="flip.display_name+'\n'+flip.lore"/>
   </div>
 </template>
 
