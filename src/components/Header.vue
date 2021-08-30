@@ -1,9 +1,9 @@
 <template>
   <div class="navbar shadow-lg bg-base-300 text-neutral-content w-full fixed" :class="classname" :style="styles">
-    <div class="flex-none px-2 mx-2">
-    <img class="cursor-pointer" onclick="window.location = '/'" src="../assets/logo.png"/>
+    <div class="px-2 mx-2 navbar-start">
+    <router-link to="/skyhouse"><img class="cursor-pointer" src="../assets/logo.png"/></router-link>
     </div>
-    <div class="flex-1 px-2 mx-2">
+    <div class="flex-1 px-2 mx-2 navbar-center">
       <div class="items-stretch hidden lg:flex">
         <a class="btn btn-ghost btn-sm rounded-btn pagelink" v-for="route in routes" :key="route.name"
         :style="route.name == $route.name ? 'background-color: rgb(66, 65, 81); margin-left: 5px;' : 'margin-left: 5px;'">
@@ -12,7 +12,7 @@
 
       </div>
     </div>
-    <SearchBar/>
+<!--    <SearchBar/>-->
 
 <!--    <div class="flex-none">-->
 <!--      <button class="btn btn-square btn-ghost">-->
@@ -24,7 +24,7 @@
 <!--        </div>-->
 <!--      </button>-->
 <!--    </div>-->
-    <div class="flex-none">
+    <div class="navbar-end">
       <div class="avatar" v-if="isLoggedIn || mode == 2">
         <Avatar :pfpSrc="pfpSrc"/>
       </div>
@@ -74,7 +74,7 @@
       loginButton(){
         const url = window.location.href;
         const { hostname } = new URL(url);
-        let redUri = hostname === "skyblock.tools" ? "https%3A%2F%2Fskyblock.tools%2Foauth_callback%2F" : "http%3A%2F%2Flocalhost%3A3000%2Fskyhouse-v2%2Foauth_callback%2F";
+        let redUri = hostname === "skyblock.tools" ? "https%3A%2F%2Fskyblock.tools%2Foauth_callback%2F" : "http%3A%2F%2Flocalhost%3A3000%2Fskyhouse%2Foauth_callback%2F";
         const win = window.open("https://discord.com/api/oauth2/authorize?client_id=841014617895469096&redirect_uri="+redUri+"&response_type=code&scope=identify%20guilds&prompt=none","Login",'height=500,width=500');
         const pollTimer = window.setInterval(function() {
           if (win.closed !== false) {

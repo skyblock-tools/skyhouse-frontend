@@ -14,9 +14,9 @@
       <div class="p-6 pb-0 card bordered flip-type">
         <span class="text-xs text-left mb-1 setting-desc">Flip Type</span>
         <div class="tabs ml-auto mr-auto">
-          <a class="tab tab-bordered text-xs" @click="flipType = 0" :class="flipType == 0 ? 'tab-active' : null">Auction to BIN</a>
+          <a class="tab tab-bordered text-xs" @click="flipType = 2" :class="flipType == 2 ? 'tab-active' : null">Auction to BIN</a>
           <a class="tab tab-bordered text-xs" @click="flipType = 1" :class="flipType == 1 ? 'tab-active' : null">BIN to BIN</a>
-          <a class="tab tab-bordered text-xs pointer-events-none" @click="flipType = 2" :class="flipType == 2 ? 'tab-active' : null">Soon™</a>
+          <a class="tab tab-bordered text-xs pointer-events-none" @click="flipType = 3" :class="flipType == 3 ? 'tab-active' : null">Soon™</a>
         </div>
 
       </div>
@@ -29,45 +29,45 @@
           <input pattern="[0-9MKmk\.]*" type="text" placeholder="Maximum Price (ex. 10m)" class="input input-bordered allowSpecial">
         </div>
       </div>
-      <div class="p-6 pb-0 card bordered filters" :style="isPlus ? false : 'cursor: not-allowed !important;'">
+      <div class="p-6 pb-0 card bordered filters" @click="checkFilters" :style="isPlus ? false : 'cursor: not-allowed !important;'">
         <span class="text-xs text-left mb-2 setting-desc">Filters <svg v-if="!isPlus" class="inline fill-current w-5 h-3.5 -mt-1" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M18 10v-4c0-3.313-2.687-6-6-6s-6 2.687-6 6v4h-3v14h18v-14h-3zm-5 7.723v2.277h-2v-2.277c-.595-.347-1-.984-1-1.723 0-1.104.896-2 2-2s2 .896 2 2c0 .738-.404 1.376-1 1.723zm-5-7.723v-4c0-2.206 1.794-4 4-4 2.205 0 4 1.794 4 4v4h-8z"/></svg></span>
         <div class="filters-blocked-msg" v-if="!isPlus">Skyhouse+ Required</div>
         <div class="card bordered" :style="isPlus ? false : 'filter: blur(2px);'">
           <div class="form-control">
             <label class="label">
               <span class="label-text">Hide Cakesouls</span>
-              <input type="checkbox" :disabled="!isPlus" checked class="toggle">
+              <input type="checkbox" :disabled="!isPlus" checked class="toggle filterToggle">
             </label>
           </div>
           <div class="form-control">
             <label class="label">
               <span class="label-text">Hide Skins</span>
-              <input type="checkbox" :disabled="!isPlus" checked class="toggle">
+              <input type="checkbox" :disabled="!isPlus" checked class="toggle filterToggle">
             </label>
           </div>
           <div class="form-control">
             <label class="label">
               <span class="label-text">Hide Recombobulated</span>
-              <input type="checkbox" :disabled="!isPlus" class="toggle">
+              <input type="checkbox" :disabled="!isPlus" class="toggle filterToggle">
             </label>
           </div>
           <div class="form-control">
             <label class="label">
               <span class="label-text">Hide Pets</span>
-              <input type="checkbox" :disabled="!isPlus" class="toggle">
+              <input type="checkbox" :disabled="!isPlus" class="toggle filterToggle">
             </label>
           </div>
           <div class="form-control">
             <label class="label">
               <span class="label-text">Hide Enchanted Books</span>
-              <input type="checkbox" :disabled="!isPlus" class="toggle">
+              <input type="checkbox" :disabled="!isPlus" class="toggle filterToggle">
             </label>
           </div>
         </div>
       </div>
       <div class="p-6 pb-0 card bordered sort">
         <span class="text-xs text-left mb-2 setting-desc">Sort</span>
-        <select class="select select-bordered w-full max-w-xs">
+        <select class="select select-bordered w-full max-w-xs sort-sel">
           <option selected="">Higher profit</option>
           <option>Higher % profit</option>
           <option>Lower price</option>
@@ -98,6 +98,16 @@ export default {
         document.getElementsByClassName('toggleHide')[0].style.marginLeft = '305px';
       }
     },
+    checkFilters: function(){
+      if(this.isPlus){
+        let hideCakesouls = document.getElementsByClassName('filterToggle')[0].checked
+        let hideSkins = document.getElementsByClassName('filterToggle')[1].checked
+        let hideRecomb = document.getElementsByClassName('filterToggle')[2].checked
+        let hidePets = document.getElementsByClassName('filterToggle')[3].checked
+        let hideBooks = document.getElementsByClassName('filterToggle')[4].checked
+        this.filterNumber = this.getItemFilterNum(hideSkins, hidePets, hideRecomb, hideCakesouls, hideBooks)
+      }
+    },
     getItemFilterNum: function(removeSkins, removePets, removeRecomb, removeCakeSouls, removeEnchantedBooks) {
       let num = 0
       if(removeSkins){
@@ -122,10 +132,15 @@ export default {
     return {
       isPlus: JSON.parse(window.localStorage.getItem('user_session_data')).privilege_level > 1,
       flipType: 1,
+      filterNumber: 0,
+      sort: 0
     }
   },
   mounted() {
     this.$root.Sidebar = this
+    document.getElementsByClassName('sort-sel')[0].onchange = () => {
+      this.sort = document.getElementsByClassName('sort-sel')[0].selectedIndex
+    }
     this.$nextTick(function () {
       let prevVal = "";
       const input = document.getElementsByClassName("allowSpecial")[0];
@@ -160,6 +175,7 @@ export default {
         this.$root.maxPrice = num;
       });
     });
+    this.checkFilters()
   }
 }
 </script>

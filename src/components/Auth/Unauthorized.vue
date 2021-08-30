@@ -42,12 +42,7 @@
       this.$root.navbar.loginButton()
     },
     joinDiscord(){
-      if(this.txt == "I've joined"){
-        window.location.reload()
-      }else{
-        window.open("https://discord.gg/JSg9UvuYQs", '_blank').focus();
-        this.txt = "I've joined"
-      }
+      window.location.href = "https://discord.gg/kPGE84Gf67";
     }
   }
 }

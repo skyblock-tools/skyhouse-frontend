@@ -7,15 +7,15 @@
       </figure>
       <div @click="copyToClipboard" class="card-body cursor-pointer">
         <h2 class="card-title">{{ name }}
-          <div class="badge badge-outline" v-if="rarity == 'EPIC'" style="color: rgb(124,58,170)">EPIC</div>
-          <div class="badge badge-outline" v-if="rarity == 'LEGENDARY'" style="color: rgb(245,158,11)">LEGENDARY</div>
-          <div class="badge badge-outline" v-if="rarity == 'COMMON'" style="color: rgb(150,150,200)">COMMON</div>
-          <div class="badge badge-outline" v-if="rarity == 'MYTHIC'" style="color: rgb(230,100,250)">MYTHIC</div>
-          <div class="badge badge-outline" v-if="rarity == 'RARE'" style="color: rgb(50,80,255)">RARE</div>
-          <div class="badge badge-outline" v-if="rarity == 'UNCOMMON'" style="color: rgb(50,255,80)">UNCOMMON</div>
-          <div class="badge badge-outline" v-if="rarity == 'SUPREME'" style="color: rgb(190,60,60)">SUPREME</div>
-          <div class="badge badge-outline" v-if="rarity == 'SPECIAL'" style="color: rgb(230,80,50)">SPECIAL</div>
-          <div class="badge badge-outline" v-if="rarity == 'VERY_SPECIAL'" style="color: rgb(230,80,50)">VERY SPECIAL</div>
+          <div class="badge badge-outline" v-if="rarity == 'EPIC'" style="color: rgb(124,58,170)">EPIC <img v-if="recombobulated" style="width: 20px;" src="./../../assets/recombobulator.png"/></div>
+          <div class="badge badge-outline" v-if="rarity == 'LEGENDARY'" style="color: rgb(245,158,11)">LEGENDARY <img v-if="recombobulated" style="width: 20px;" src="./../../assets/recombobulator.png"/></div>
+          <div class="badge badge-outline" v-if="rarity == 'COMMON'" style="color: rgb(150,150,200)">COMMON <img v-if="recombobulated" style="width: 20px;" src="./../../assets/recombobulator.png"/></div>
+          <div class="badge badge-outline" v-if="rarity == 'MYTHIC'" style="color: rgb(230,100,250)">MYTHIC <img v-if="recombobulated" style="width: 20px;" src="./../../assets/recombobulator.png"/></div>
+          <div class="badge badge-outline" v-if="rarity == 'RARE'" style="color: rgb(50,80,255)">RARE <img v-if="recombobulated" style="width: 20px;" src="./../../assets/recombobulator.png"/></div>
+          <div class="badge badge-outline" v-if="rarity == 'UNCOMMON'" style="color: rgb(50,255,80)">UNCOMMON <img v-if="recombobulated" style="width: 20px;" src="./../../assets/recombobulator.png"/></div>
+          <div class="badge badge-outline" v-if="rarity == 'SUPREME'" style="color: rgb(190,60,60)">SUPREME <img v-if="recombobulated" style="width: 20px;" src="./../../assets/recombobulator.png"/></div>
+          <div class="badge badge-outline" v-if="rarity == 'SPECIAL'" style="color: rgb(230,80,50)">SPECIAL <img v-if="recombobulated" style="width: 20px;" src="./../../assets/recombobulator.png"/></div>
+          <div class="badge badge-outline" v-if="rarity == 'VERY_SPECIAL'" style="color: rgb(230,80,50)">VERY SPECIAL <img v-if="recombobulated" style="width: 20px;" src="./../../assets/recombobulator.png"/></div>
         </h2>
         <p><span class="opacity-75">Price: </span><span class="font-mono text-2sm">{{ price }}</span></p>
         <p><span class="opacity-75">Est. Resell Price: </span><span class="font-mono text-2sm">{{ resell_price }}</span></p>
@@ -83,6 +83,7 @@ export default {
     house_quantity: String,
     ends: Number,
     lore: String,
+    recombobulated: Boolean
   },
   components: {
     VueCountdown

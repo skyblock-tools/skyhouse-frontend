@@ -25,6 +25,9 @@ export default {
   mounted() {
     this.$root.flipgrid = this;
     engine.start(this)
+  },
+  beforeUnmount(){
+    clearInterval(this.$root.flipFetcher)
   }
 }
 </script>

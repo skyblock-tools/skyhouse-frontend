@@ -13,8 +13,8 @@
           <h2 class="card-title text-2xl">{{username}} <div v-if="skyhousePlus" class="badge badge-outline badge-lg ml-auto float-right skyhouseplusBadge">Skyhouse+</div></h2>
           <div class="card-actions flex-grow-0 profCardActions">
             <button v-if="!skyhousePlus" class="btn btn-primary">Upgrade</button>
-            <button v-if="skyhousePlus" class="btn btn-primary">Sign Out</button>
-            <button v-if="!skyhousePlus" class="btn btn-ghost">Sign Out</button>
+            <button v-if="skyhousePlus" @click="logout" class="btn btn-primary">Sign Out</button>
+            <button v-if="!skyhousePlus" @click="logout" class="btn btn-ghost">Sign Out</button>
           </div>
         </div>
       </div>
@@ -22,7 +22,7 @@
     <div class="form-control mt-4">
       <div class="border-white">
         <label class="label">
-          <span class="label-text">Generated Mod Token</span>
+          <span class="label-text">Generated Mod Token (click to copy)</span>
         </label>
         <div class="tokenboxcont">
           <input type="text" @click="copyToken" :value="token" readonly="true" class="input cursor-pointer focus:shadow-none tokenbox">
@@ -69,6 +69,7 @@ export default {
     }
   },
   mounted() {
+    document.title = "Profile - Skyhouse"
     const session_data = JSON.parse(window.localStorage.getItem("user_session_data"))
     if(session_data == null){
       return
@@ -86,7 +87,7 @@ export default {
               Authorization: 'Bearer ' + JSON.parse(window.localStorage.getItem("user_session_data")).access_token
             }
           }).then(x => x.json()).then(x => {
-        this.token = x["mod_refresh_token"]
+        this.token = '/shst '+x["mod_refresh_token"]+' site'
       })
     })
   },
@@ -102,7 +103,7 @@ export default {
               Authorization: 'Bearer ' + JSON.parse(window.localStorage.getItem("user_session_data")).access_token
             }
           }).then(x => x.json()).then(x => {
-            this.token = x["mod_refresh_token"]
+            this.token = '/shst '+x["mod_refresh_token"]+' site'
         createToast('Generated new mod token',
             {
               position: 'bottom-right',
@@ -127,6 +128,10 @@ export default {
             transition: 'zoom',
             showIcon: true
           })
+    },
+    logout(){
+      window.localStorage.removeItem("user_session_data")
+      window.location.reload()
     }
   }
 }

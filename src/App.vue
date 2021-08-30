@@ -1,7 +1,7 @@
 <template>
   <Header />
   <div class="watermark font-thin">
-    v2.8_beta
+    v2.11_baker
   </div>
   <router-view />
 </template>
@@ -45,5 +45,6 @@ body,
   padding-right: 10px;
   background: palevioletred;
   right: 0;
+  display: none;
 }
 </style>

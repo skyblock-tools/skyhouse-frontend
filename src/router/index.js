@@ -3,7 +3,7 @@ import Flipper from "../views/Flipper.vue";
 import Profile from "../views/Profile.vue";
 import OAuth2Callback from "../views/OAuth2Callback.vue";
 
-const base = "/skyhouse-v2";
+const base = "/skyhouse";
 
 const routes = [
   {

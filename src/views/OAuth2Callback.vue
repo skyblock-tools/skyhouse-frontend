@@ -1,5 +1,6 @@
 <template>
-  Please wait...
+  <div class="dynaoauth-msg">
+  </div>
 </template>
 
 <script>
@@ -14,13 +15,12 @@ export default {
     httpGetAsync(`https://api.skyblock.tools/api/auth/oauth/discord?code=${code}`, function(res){
       const json = res.responseText;
       window.localStorage.setItem('user_session_data', json);
-      alert(0);
       window.close();
     });
 
     function httpGetAsync(theUrl, callback) {
       if(window.location.href.includes("localhost")) {
-        theUrl += "&redirect_uri=http%3A%2F%2Flocalhost%3A3000%2Fskyhouse-v2%2Foauth_callback%2F";
+        theUrl += "&redirect_uri=http%3A%2F%2Flocalhost%3A3000%2Fskyhouse%2Foauth_callback%2F";
       }
       var xmlHttp = new XMLHttpRequest();
       xmlHttp.onreadystatechange = function() {
@@ -30,6 +30,21 @@ export default {
       xmlHttp.open("GET", theUrl, true);
       xmlHttp.send(null);
     }
+  },
+  mounted() {
+    this.$nextTick(function() {
+      self.resizeTo(0,0);
+      self.resizeTo(0,0);
+      self.resizeTo(0,0);
+      self.resizeTo(0,0);
+      self.resizeTo(0,0);
+      self.resizeTo(0,0);
+      self.resizeTo(0,0);
+      self.resizeTo(0,0);
+      self.resizeTo(0,0);
+      self.resizeTo(0,0);
+      self.resizeTo(0,0);
+    });
   }
 }
 </script>

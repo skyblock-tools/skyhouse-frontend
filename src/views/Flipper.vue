@@ -32,6 +32,9 @@ export default {
     isNotLoggedIn() {
       return !this.isLoggedIn
     }
+  },
+  mounted() {
+    document.title = "Flipper - Skyhouse"
   }
 }
 </script>
