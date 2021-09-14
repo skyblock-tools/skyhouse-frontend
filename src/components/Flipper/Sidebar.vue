@@ -105,6 +105,7 @@ export default {
         let hideRecomb = document.getElementsByClassName('filterToggle')[2].checked
         let hidePets = document.getElementsByClassName('filterToggle')[3].checked
         let hideBooks = document.getElementsByClassName('filterToggle')[4].checked
+        this.saveFilterOptions()
         this.filterNumber = this.getItemFilterNum(hideSkins, hidePets, hideRecomb, hideCakesouls, hideBooks)
       }
     },
@@ -126,6 +127,48 @@ export default {
         num |= Math.pow(2,4)
       }
       return num
+    },
+    saveFilterOptions: () => {
+      let optionNumb = 0;
+      optionNumb += document.getElementsByClassName('filterToggle')[0].checked << 0;
+      optionNumb += document.getElementsByClassName('filterToggle')[1].checked << 1;
+      optionNumb += document.getElementsByClassName('filterToggle')[2].checked << 2;
+      optionNumb += document.getElementsByClassName('filterToggle')[3].checked << 3;
+      optionNumb += document.getElementsByClassName('filterToggle')[4].checked << 4;
+      localStorage.setItem("filterOptions", optionNumb);
+    },
+    setFilterOptions: () => {
+      let filterOptions = parseInt(localStorage.getItem("filterOptions")) ?? 3;
+      if (filterOptions % 2) {
+        document.getElementsByClassName('filterToggle')[0].checked = true;
+      } else {
+        document.getElementsByClassName('filterToggle')[0].checked = false;
+      }
+      filterOptions = filterOptions >> 1;
+      if (filterOptions % 2) {
+        document.getElementsByClassName('filterToggle')[1].checked = true;
+      } else {
+        document.getElementsByClassName('filterToggle')[1].checked = false;
+      }
+      filterOptions = filterOptions >> 1;
+      if (filterOptions % 2) {
+        document.getElementsByClassName('filterToggle')[2].checked = true;
+      } else {
+        document.getElementsByClassName('filterToggle')[2].checked = false;
+      }
+      filterOptions = filterOptions >> 1;
+      if (filterOptions % 2) {
+        document.getElementsByClassName('filterToggle')[3].checked = true;
+      } else {
+        document.getElementsByClassName('filterToggle')[3].checked = false;
+      }
+      filterOptions = filterOptions >> 1;
+      if (filterOptions % 2) {
+        document.getElementsByClassName('filterToggle')[4].checked = true;
+      } else {
+        document.getElementsByClassName('filterToggle')[4].checked = false;
+      }
+      filterOptions = filterOptions >> 1;
     }
   },
   data(){
@@ -175,6 +218,7 @@ export default {
         this.$root.maxPrice = num;
       });
     });
+    this.setFilterOptions()
     this.checkFilters()
   }
 }
