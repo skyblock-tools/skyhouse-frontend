@@ -6,8 +6,34 @@ function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
 
+
+let isRunning = true;
+let requestsWithoutCheck = 0;
+
 let isRatelimited = false;
 let isReloading = false;
+
+/*
+Very basic function to check for human presence.
+This isn't designed to stop automation, just to prevent spam from browsers when the user is not monitoring the content
+
+This is mainly to reduce the load on the server
+but it will also help performance for the client, very slightly.
+Almost certainly to an unnoticable degree.
+Unless you're using google chrome, then it will reduce memory usage for this page from 12.5GiB to 10GiB.
+
+If anyone asks, it's "a complex optimisation algorithm to improve performance on your computer".
+*/
+function checkHumanPresence(callback) {
+    createToast('Are you still there? Close this message to continue refreshing', {
+        position: 'top-center',
+        type: 'warning',
+        transition: 'bounce',
+        showIcon: true,
+        timeout: -1,
+        onClose: callback,
+    });
+}
 
 function getData(grid) {
     console.log("Attempting to fetch flips...")
@@ -19,7 +45,8 @@ function getData(grid) {
             Authorization: 'Bearer ' + JSON.parse(window.localStorage.getItem("user_session_data")).access_token
         }
     })
-        .then(async res => {
+        .then(async (res) => {
+            requestsWithoutCheck++;
             const json = await res.json()
             if (res.status == 401) {
                 reloadToken()
@@ -112,11 +139,23 @@ async function reloadToken() {
         })
 }
 
-export function start(grid){
+
+export function start(grid) {
+
+    const priv_level = JSON.parse(window.localStorage.getItem("user_session_data")).privilege_level;
+    const interval = priv_level == 1 ? 10_000 : 5_000;
+    const max_auto_requests = 1500 / (interval / 1000); // roughly 20-25 minutes
+
     getData(grid)
     grid.$root.flipFetcher = setInterval(() => {
-        if (!isRatelimited && !isReloading) {
-            getData(grid)
+        if (!isRatelimited && !isReloading && isRunning) {
+            if (requestsWithoutCheck > max_auto_requests) {
+                isRunning = false;
+                checkHumanPresence(() => {
+                    requestsWithoutCheck = 0;
+                    isRunning = true;
+                });
+            } else getData(grid)
         }
-    }, JSON.parse(window.localStorage.getItem("user_session_data")).privilege_level == 1 ? 10000 : 5000)
+    }, priv_level == 1 ? 10_000 : 5_000)
 }
