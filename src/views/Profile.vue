@@ -10,11 +10,11 @@
           </div>
         </figure>
         <div class="card-body mt-auto mb-auto">
-          <h2 class="card-title text-2xl">{{username}} <div v-if="skyhousePlus" class="badge badge-outline badge-lg ml-auto float-right skyhouseplusBadge">Skyhouse+</div></h2>
+          <h2 class="card-title text-2xl">{{username}} <div v-if="skyhousePlus" class="badge badge-outline badge-lg ml-auto float-right skyhouseplusBadge">{{t("profile_page.skyhouse_plus")}}</div></h2>
           <div class="card-actions flex-grow-0 profCardActions">
-            <button v-if="!skyhousePlus" class="btn btn-primary">Upgrade</button>
-            <button v-if="skyhousePlus" @click="logout" class="btn btn-primary">Sign Out</button>
-            <button v-if="!skyhousePlus" @click="logout" class="btn btn-ghost">Sign Out</button>
+            <button v-if="!skyhousePlus" class="btn btn-primary">{{t("profile_page.upgrade")}}</button>
+            <button v-if="skyhousePlus" @click="logout" class="btn btn-primary">{{t("profile_page.sign_out")}}</button>
+            <button v-if="!skyhousePlus" @click="logout" class="btn btn-ghost">{{t("profile_page.sign_out")}}</button>
           </div>
         </div>
       </div>
@@ -22,7 +22,7 @@
     <div class="form-control mt-4">
       <div class="border-white">
         <label class="label">
-          <span class="label-text">Generated Mod Token (click to copy)</span>
+          <span class="label-text">{{t("profile_page.generated_mod_token")}}</span>
         </label>
         <div class="tokenboxcont">
           <input type="text" @click="copyToken" :value="token" readonly="true" class="input cursor-pointer focus:shadow-none tokenbox">
@@ -33,9 +33,9 @@
       </div>
 
       <label class="label">
-        <span class="label-text">Username</span>
+        <span class="label-text">{{t("profile_page.tsername")}}</span>
       </label>
-      <input type="text" placeholder="Minecraft Username/IGN" class="input input-bordered">
+      <input type="text" :placeholder="t('profile_page.minecraft_username')" class="input input-bordered">
     </div>
   </div>
   <Unauthorized v-if="isNotLoggedIn" :_mode="mode" :name="name" />
@@ -45,6 +45,7 @@
 import Unauthorized from "../components/Auth/Unauthorized.vue";
 import { createToast } from 'mosha-vue-toastify'
 import 'mosha-vue-toastify/dist/style.css'
+import t from '../utils/translation';
 
 export default {
   name: "Profile",
@@ -58,6 +59,7 @@ export default {
       username: this.username,
       token: this.token,
       skyhousePlus: this.skyhousePlus,
+      t: t
     }
   },
   computed: {
