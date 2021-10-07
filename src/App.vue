@@ -1,8 +1,6 @@
 <template>
   <Header />
-  <div class="watermark font-thin">
-    v2.1.5_theMackabu
-  </div>
+  <div class="watermark font-thin">v2.1.5_theMackabu</div>
   <router-view />
 </template>
 

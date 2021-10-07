@@ -1,35 +1,51 @@
 <template>
   <div class="loader-container" v-if="!ready">
-    <div class="lds-ripple"><div></div><div></div></div>
+    <div class="lds-ripple">
+      <div></div>
+      <div></div>
+    </div>
   </div>
-  <Lore/>
+  <Lore />
   <div class="grid flip-grid text-center" v-if="ready">
-    <Flip v-for="flip in flips" :name="flip.item_name" :rarity="flip.tier" :auction_id="flip.uuid" :price="flip.price.toLocaleString()" :resell_price="flip.resell_price.toLocaleString()" :profit="flip.profit.toLocaleString()" :house_quantity="flip.quantity.toLocaleString()" :pet_candies="flip.petCandyUsed" :ends="flip.end" :image="flip.head_url" :lore="flip.display_name+'\n'+flip.lore"/>
+    <Flip
+      v-for="flip in flips"
+      :name="flip.item_name"
+      :rarity="flip.tier"
+      :auction_id="flip.uuid"
+      :price="flip.price.toLocaleString()"
+      :resell_price="flip.resell_price.toLocaleString()"
+      :profit="flip.profit.toLocaleString()"
+      :house_quantity="flip.quantity.toLocaleString()"
+      :pet_candies="flip.petCandyUsed"
+      :ends="flip.end"
+      :image="flip.head_url"
+      :lore="flip.display_name + '\n' + flip.lore"
+    />
   </div>
 </template>
 
 <script>
-import Flip from "./Flip.vue"
-import Lore from ".././Lore.vue"
-import * as engine from './engine.js'
+import Flip from "./Flip.vue";
+import Lore from ".././Lore.vue";
+import * as engine from "./engine.js";
 
 export default {
   name: "FlipGrid",
-  components: {Flip, Lore},
-  data(){
+  components: { Flip, Lore },
+  data() {
     return {
       flips: [],
       ready: false,
-    }
+    };
   },
   mounted() {
     this.$root.flipgrid = this;
-    engine.start(this)
+    engine.start(this);
   },
-  beforeUnmount(){
-    clearInterval(this.$root.flipFetcher)
-  }
-}
+  beforeUnmount() {
+    clearInterval(this.$root.flipFetcher);
+  },
+};
 </script>
 
 <style>
@@ -47,13 +63,13 @@ export default {
 
 .flip-grid::-webkit-scrollbar-track {
   background: transparent;
-  border-radius: .5rem;
+  border-radius: 0.5rem;
 }
 
 .flip-grid::-webkit-scrollbar-thumb {
   background-color: #6d6c7a;
   border-radius: 10px;
-  border: 5px solid rgb(48,47,61);
+  border: 5px solid rgb(48, 47, 61);
 }
 
 .loader-container {
@@ -64,7 +80,6 @@ export default {
   transform: translate(-50%, -50%);
 }
 
-
 .lds-ripple {
   display: inline-block;
   position: relative;
@@ -73,7 +88,7 @@ export default {
 }
 .lds-ripple div {
   position: absolute;
-  border: 4px solid rgb(213,204,255);
+  border: 4px solid rgb(213, 204, 255);
   opacity: 1;
   border-radius: 50%;
   animation: lds-ripple 1s cubic-bezier(0, 0.2, 0.8, 1) infinite;
@@ -97,5 +112,4 @@ export default {
     opacity: 0;
   }
 }
-
 </style>

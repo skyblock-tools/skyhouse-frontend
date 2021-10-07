@@ -1,15 +1,15 @@
 <template>
-  <div class="box" v-if="isLoggedIn">
-    <div class="grid layout">
-      <Sidebar/>
-      <FlipGrid/>
-    </div>
+<div class="box" v-if="isLoggedIn">
+  <div class="grid layout">
+    <Sidebar />
+    <FlipGrid />
   </div>
-  <Unauthorized v-if="isNotLoggedIn" :_mode="mode" :name="Flipper" />
+</div>
+<Unauthorized v-if="isNotLoggedIn" :_mode="mode" :name="Flipper" />
 </template>
 
 <script>
-import Sidebar from '../components/Flipper/Sidebar.vue'
+import Sidebar from "../components/Flipper/Sidebar.vue";
 import FlipGrid from "../components/Flipper/FlipGrid.vue";
 import Unauthorized from "../components/Auth/Unauthorized.vue";
 
@@ -18,25 +18,25 @@ export default {
   components: {
     Unauthorized,
     FlipGrid,
-    Sidebar
+    Sidebar,
   },
-  data(){
+  data() {
     return {
-      mode: this.$root.navbar.mode
-    }
+      mode: this.$root.navbar.mode,
+    };
   },
   computed: {
-    isLoggedIn(){
-      return this.$root.navbar.isLoggedIn
+    isLoggedIn() {
+      return this.$root.navbar.isLoggedIn;
     },
     isNotLoggedIn() {
-      return !this.isLoggedIn
-    }
+      return !this.isLoggedIn;
+    },
   },
   mounted() {
-    document.title = "Flipper - Skyhouse"
-  }
-}
+    document.title = "Flipper - Skyhouse";
+  },
+};
 </script>
 
 <style>
