@@ -25,14 +25,20 @@ Unless you're using google chrome, then it will reduce memory usage for this pag
 If anyone asks, it's "a complex optimisation algorithm to improve performance on your computer".
 */
 function checkHumanPresence(callback) {
-    createToast('Are you still there? Close this message to continue refreshing', {
-        position: 'top-center',
-        type: 'warning',
-        transition: 'bounce',
-        showIcon: true,
-        timeout: -1,
-        onClose: callback,
-    });
+  createToast({
+  title: 'Are you still there? ',
+  description: 'Close this message to continue refreshing'
+  },
+  {
+  transition: 'slide',
+  position: 'top-center',
+  type: 'warning',
+  showCloseButton: 'true',
+  swipeClose: 'true',
+  showIcon: 'true',
+  timeout: -1,
+  hideProgressBar: 'true',
+  })
 }
 
 function getData(grid) {

@@ -1,5 +1,5 @@
 <template>
-  <div class="sidebar bg-neutral flex flex-col h-screen shadow-lg text-center">
+  <div class="slideIn sidebar bg-neutral flex flex-col h-screen shadow-lg text-center">
     <div class="overflow-auto opts-cont">
       <div class="p-6 pb-0" v-if="!isPlus">
         <div class="alert alert-warning">
@@ -12,16 +12,16 @@
         </div>
       </div>
       <div class="p-6 pb-0 card bordered flip-type">
-        <span class="text-xs text-left mb-1 setting-desc">Flip Type</span>
+        <span class="text-xs text-left mb-1 setting-desc select-none">Flip Type</span>
         <div class="tabs ml-auto mr-auto">
-          <a class="tab tab-bordered text-xs" @click="flipType = 2" :class="flipType == 2 ? 'tab-active' : null">Auction to BIN</a>
-          <a class="tab tab-bordered text-xs" @click="flipType = 1" :class="flipType == 1 ? 'tab-active' : null">BIN to BIN</a>
+          <a class="tab tab-bordered text-xs transition-all" @click="flipType = 2" :class="flipType == 2 ? 'tab-active' : null">Auction to BIN</a>
+          <a class="tab tab-bordered text-xs transition-all" @click="flipType = 1" :class="flipType == 1 ? 'tab-active' : null">BIN to BIN</a>
           <a class="tab tab-bordered text-xs pointer-events-none" @click="flipType = 3" :class="flipType == 3 ? 'tab-active' : null">Soon™</a>
         </div>
 
       </div>
       <div class="p-6 pb-0 card bordered minprofmaxprice">
-        <span class="text-xs text-left mb-2 setting-desc">Min Profit & Max Price</span>
+        <span class="text-xs text-left mb-2 setting-desc select-none">Min Profit & Max Price</span>
         <div class="form-control m-1 mb-2">
           <input pattern="[0-9MKmk\.]*" type="text" placeholder="Minimum Profit (ex. 1m)" class="input input-bordered allowSpecial">
         </div>
@@ -29,7 +29,7 @@
           <input pattern="[0-9MKmk\.]*" type="text" placeholder="Maximum Price (ex. 10m)" class="input input-bordered allowSpecial">
         </div>
       </div>
-      <div class="p-6 pb-0 card bordered filters" @click="checkFilters" :style="isPlus ? false : 'cursor: not-allowed !important;'">
+      <div class="p-6 pb-0 card bordered filters select-none" @click="checkFilters" :style="isPlus ? false : 'cursor: not-allowed !important;'">
         <span class="text-xs text-left mb-2 setting-desc">Filters <svg v-if="!isPlus" class="inline fill-current w-5 h-3.5 -mt-1" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M18 10v-4c0-3.313-2.687-6-6-6s-6 2.687-6 6v4h-3v14h18v-14h-3zm-5 7.723v2.277h-2v-2.277c-.595-.347-1-.984-1-1.723 0-1.104.896-2 2-2s2 .896 2 2c0 .738-.404 1.376-1 1.723zm-5-7.723v-4c0-2.206 1.794-4 4-4 2.205 0 4 1.794 4 4v4h-8z"/></svg></span>
         <div class="filters-blocked-msg" v-if="!isPlus">Skyhouse+ Required</div>
         <div class="card bordered" :style="isPlus ? false : 'filter: blur(2px);'">
@@ -65,7 +65,7 @@
           </div>
         </div>
       </div>
-      <div class="p-6 pb-0 card bordered sort">
+      <div class="p-6 pb-0 card bordered sort select-none">
         <span class="text-xs text-left mb-2 setting-desc">Sort</span>
         <select class="select select-bordered w-full max-w-xs sort-sel">
           <option selected="">Higher profit</option>
@@ -76,9 +76,6 @@
       </div>
     </div>
 
-    <!--    <div class="toggleHide bg-base-300 shadow-lg" v-on:click="hideSidebar">-->
-    <!--      Hide-->
-    <!--    </div>-->
   </div>
 </template>
 
@@ -86,18 +83,6 @@
 export default {
   name: "Sidebar",
   methods: {
-    hideSidebar: function (){
-      if(document.getElementsByClassName('toggleHide')[0].innerText == 'Hide'){
-        document.getElementsByClassName('sidebar')[0].classList.add('slideOut')
-        document.getElementsByClassName('toggleHide')[0].innerText = 'Show'
-        document.getElementsByClassName('toggleHide')[0].style.marginLeft = '303px';
-      }else {
-        document.getElementsByClassName('sidebar')[0].classList.remove('slideOut')
-        document.getElementsByClassName('sidebar')[0].classList.add('slideIn')
-        document.getElementsByClassName('toggleHide')[0].innerText = 'Hide'
-        document.getElementsByClassName('toggleHide')[0].style.marginLeft = '305px';
-      }
-    },
     checkFilters: function(){
       if(this.isPlus){
         let hideCakesouls = document.getElementsByClassName('filterToggle')[0].checked
@@ -226,32 +211,15 @@ export default {
 
 <style>
 .sidebar {
-  width: 350px;
-  max-height: calc(100% - 66px);
+  width: 340.9px;
+  max-height: calc(100% - 60px);
   z-index: 2;
-}
-
-.toggleHide {
-  position: absolute;
-  bottom: 0;
-  margin-left: 305px;
-  margin-bottom: 40px;
-  font-size: .8rem;
-  border-radius: 0 0 0.5rem 0.5rem;
-  cursor: pointer;
-  z-index: 2;
-  color: rgba(255,255,255,.75);
-  padding: 0 3px 2px;
-  transition: .1s ease;
-  transform: rotate(270deg);
-  width: 70px;
 }
 
 .slideIn {
   animation: 0.3s slideIn;
 
 }
-
 .slideOut {
   animation: 0.3s slideOut;
   animation-fill-mode: forwards;
@@ -259,11 +227,11 @@ export default {
 
 @keyframes slideOut {
   from {margin-left: 0}
-  to {margin-left: -330px}
+  to {margin-left: -340.9px}
 }
 
 @keyframes slideIn {
-  from {margin-left: -330px}
+  from {margin-left: -340.9px}
   to {margin-left: 0}
 }
 

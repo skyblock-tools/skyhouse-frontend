@@ -34,7 +34,7 @@ export default {
 
 <style>
 .flip-grid {
-  max-height: calc(100% - 66px);
+  max-height: calc(100% - 60px);
   grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
   gap: 30px;
   padding: 30px;

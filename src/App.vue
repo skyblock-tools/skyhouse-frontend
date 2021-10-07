@@ -1,7 +1,7 @@
 <template>
   <Header />
   <div class="watermark font-thin">
-    v2.11_baker
+    v2.1.5_theMackabu
   </div>
   <router-view />
 </template>
@@ -10,6 +10,7 @@
 import Header from "./components/Header.vue";
 import Flipper from "./views/Flipper.vue";
 import Profile from "./views/Profile.vue";
+import SkyhousePlus from "./views/SkyhousePlus.vue";
 
 export default {
   name: "App",
@@ -17,6 +18,7 @@ export default {
     Flipper,
     Profile,
     Header,
+    SkyhousePlus,
   },
 };
 </script>

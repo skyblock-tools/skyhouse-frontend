@@ -1,5 +1,5 @@
 <template>
-  <div class="indicator flipIndicator">
+  <div class="indicator flipIndicator select-none">
     <div class="indicator-item badge badge-primary justAdded">New</div>
     <div class="flipCard card bg-neutral shadow-lg">
       <figure class="cursor-pointer" @click="copyToClipboard" @mousemove="this.$root.Lore.updateLore" @mouseenter="this.$root.Lore.showLore = true; this.$root.Lore.lore = this.lore; this.$root.Lore.parseLore()" @mouseleave="this.$root.Lore.showLore = false">
@@ -41,7 +41,6 @@
 import { createToast } from 'mosha-vue-toastify'
 import 'mosha-vue-toastify/dist/style.css'
 import VueCountdown from '@chenfengyuan/vue-countdown';
-
 export default {
   name: "Flip",
   methods: {
@@ -53,13 +52,18 @@ export default {
 
       document.execCommand("copy")
       document.body.removeChild(TempText)
-      createToast('Copied to Clipboard',
-          {
-            position: 'bottom-right',
-            type: 'success',
-            transition: 'zoom',
-            showIcon: true
-          })
+      createToast({
+      title: 'Copied to clipboard!',
+      description: 'Auction ID was copied'
+      },
+      {
+      position: 'bottom-right',
+      showIcon: 'true',
+      type: 'success',
+      transition: 'slide',
+      hideProgressBar: 'true',
+      timeout: 2000,
+      })
     },
     transformSlotProps(props) {
       const formattedProps = {}
@@ -92,6 +96,10 @@ export default {
 </script>
 
 <style>
+.card {
+  border-radius: 0.5rem !important;
+}
+
 .justAdded {
   display: none !important;
 }
@@ -117,7 +125,7 @@ export default {
   max-height: 100px;
   margin: 0 auto 10px;
   padding: 10px 5px;
-  border-radius: .5rem .5rem 0 0;
+  border-radius: 0.5rem 0.5rem 0 0;
 }
 
 .flipCard .card-body {

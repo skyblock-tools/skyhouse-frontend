@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from "vue-router";
 import Flipper from "../views/Flipper.vue";
+import SkyhousePlus from "../views/SkyhousePlus.vue"
 import Profile from "../views/Profile.vue";
 import OAuth2Callback from "../views/OAuth2Callback.vue";
 
@@ -10,6 +11,12 @@ const routes = [
     path: base + "/flipper",
     name: "Flipper",
     component: Flipper,
+    includeInHeader: true,
+  },
+  {
+    path: base + "/skyhouse+",
+    name: "Skyhouse+",
+    component: SkyhousePlus,
     includeInHeader: true,
   },
   {

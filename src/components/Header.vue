@@ -1,10 +1,19 @@
 <template>
   <div class="navbar shadow-lg bg-base-300 text-neutral-content w-full fixed" :class="classname" :style="styles">
-    <div class="px-2 mx-2 navbar-start">
-    <router-link to="/skyhouse"><img class="cursor-pointer" src="../assets/logo.png"/></router-link>
+    <div class="flex-none lg:flex" v-if="isLoggedIn || mode == 2">
+      <button class="btn btn-square btn-ghost" v-on:click="hideSidebar">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="inline-block w-6 h-6 stroke-current">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+        </svg>
+      </button>
     </div>
-    <div class="flex-1 px-2 mx-2 navbar-center">
-      <div class="items-stretch hidden lg:flex">
+    <div class="flex-1 px-2 mx-2 lg:flex">
+      <router-link to="/skyhouse"><span class="text-lg font-bold cursor-default select-none">
+              Skyhouse
+            </span></router-link>
+    </div>
+    <div class="hidden px-2 mx-2 navbar-start lg:flex">
+      <div class="flex items-stretch">
         <a class="btn btn-ghost btn-sm rounded-btn pagelink" v-for="route in routes" :key="route.name"
         :style="route.name == $route.name ? 'background-color: rgb(66, 65, 81); margin-left: 5px;' : 'margin-left: 5px;'">
           <router-link :to="route.path">{{ route.name }}</router-link>
@@ -12,26 +21,47 @@
 
       </div>
     </div>
-<!--    <SearchBar/>-->
-
-<!--    <div class="flex-none">-->
-<!--      <button class="btn btn-square btn-ghost">-->
-<!--        <div class="indicator">-->
-<!--          <div class="indicator-item badge-xs badge-secondary rounded-badge">1</div>-->
-<!--          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="inline-block w-6 h-6 stroke-current">-->
-<!--            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"></path>-->
-<!--          </svg>-->
-<!--        </div>-->
-<!--      </button>-->
-<!--    </div>-->
-    <div class="navbar-end">
+    <div class="dropdown dropdown-end dropdown-hover">
+        <div class="lg:hidden flex-none">
+          <button class="btn btn-square btn-ghost">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="inline-block w-6 h-6 stroke-current">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z"></path>
+            </svg>
+          </button>
+          <ul tabindex="0" class="p-2 shadow menu dropdown-content bg-base-100 rounded-box w-52">
+  <li>
+    <router-link to="/skyhouse/flipper"><span >
+            Flipper
+          </span></router-link>
+  </li>
+  <li>
+    <router-link to="/skyhouse/skyhouse+"><span >
+            Skyhouse+
+          </span></router-link>
+  </li>
+  <li v-if="isLoggedIn || mode == 2">
+    <router-link to="/skyhouse/profile"><span >
+            Profile
+          </span></router-link>
+  </li>
+  <li v-if="isLoggedIn || mode == 2">
+    <a @click="logout"><span>
+            Log Out
+          </span></a>
+  </li>
+</ul>
+        </div>
+        </div>
+    <div class="hidden navbar-end lg:flex">
       <div class="avatar" v-if="isLoggedIn || mode == 2">
         <Avatar :pfpSrc="pfpSrc"/>
       </div>
-      <button class="btn btn-ghost" v-if="isNotLoggedIn && mode == 1" @click="loginButton">Login via discord</button>
+      <a href="#login" class="btn btn-ghost" v-if="isNotLoggedIn && mode == 1" @click="loginButton">Login via discord</a>
     </div>
+
+
   </div>
-  <div class="spacer" style="height: 66px"></div>
+  <div style="padding: 30px;"></div>
 </template>
 
 <script>
@@ -71,6 +101,15 @@
       this.$root.navbar = this
     },
     methods: {
+      hideSidebar: function (){
+        if(document.getElementsByClassName('sidebar')[0].classList.contains('slideIn')){
+          document.getElementsByClassName('sidebar')[0].classList.toggle('slideOut')
+        } else{
+          document.getElementsByClassName('sidebar')[0].classList.toggle('slideIn')
+        }
+
+
+      },
       loginButton(){
         const url = window.location.href;
         const { hostname } = new URL(url);
@@ -82,6 +121,10 @@
             window.location.reload(false);
           }
         }, 200);
+      },
+      logout: function(){
+        window.localStorage.removeItem("user_session_data")
+        window.location.reload()
       }
     }
   }
