@@ -25,19 +25,25 @@ Unless you're using google chrome, then it will reduce memory usage for this pag
 If anyone asks, it's "a complex optimisation algorithm to improve performance on your computer".
 */
 function checkHumanPresence(callback) {
-    createToast('Are you still there? Close this message to continue refreshing', {
-        position: 'top-center',
-        type: 'warning',
-        transition: 'bounce',
-        showIcon: true,
-        timeout: -1,
-        onClose: callback,
-    });
+    createToast({
+        title: 'Are you still there? ',
+        description: 'Close this message to continue refreshing'
+    },
+        {
+            transition: 'slide',
+            position: 'top-center',
+            type: 'warning',
+            showCloseButton: 'true',
+            swipeClose: 'true',
+            showIcon: 'true',
+            timeout: -1,
+            hideProgressBar: 'true',
+        })
 }
 
 function getData(grid) {
     console.log("Attempting to fetch flips...")
-    fetch('https://api.skyblock.tools/api/flips?&sort='+(grid.$root.Sidebar.sort + 1)+((typeof grid.$root.minProf == 'undefined') ? '' : ('&min_profit='+grid.$root.minProf))+((typeof grid.$root.maxPrice == 'undefined') ? '' : ('&max_price='+grid.$root.maxPrice)) + "&type="+grid.$root.Sidebar.flipType+"&item_filter="+grid.$root.Sidebar.filterNumber, {
+    fetch('https://api.skyblock.tools/api/flips?&sort=' + (grid.$root.Sidebar.sort + 1) + ((typeof grid.$root.minProf == 'undefined') ? '' : ('&min_profit=' + grid.$root.minProf)) + ((typeof grid.$root.maxPrice == 'undefined') ? '' : ('&max_price=' + grid.$root.maxPrice)) + "&type=" + grid.$root.Sidebar.flipType + "&item_filter=" + grid.$root.Sidebar.filterNumber, {
         method: 'GET',
         withCredentials: true,
         credentials: 'include',
@@ -52,7 +58,7 @@ function getData(grid) {
                 reloadToken()
             }
             if (res.status == 429) { //hell
-                if(!isRatelimited) {
+                if (!isRatelimited) {
                     grid.ready = false
                     isRatelimited = true
                     const timeUntil = await res.headers.get("Retry-After") * 1000
@@ -76,22 +82,22 @@ function getData(grid) {
             if (res.refresh_session == true) {
                 reloadToken()
             }
-            if(typeof res.flips != "undefined" || res.flips != null){
+            if (typeof res.flips != "undefined" || res.flips != null) {
                 console.log(res.flips);
                 console.log("Flips successfully fetched!")
                 let processedUUIDS = []
-                for(let i = 0; i < grid.flips.length; i++){
-                    if(grid.flips[i].processed === true){
+                for (let i = 0; i < grid.flips.length; i++) {
+                    if (grid.flips[i].processed === true) {
                         processedUUIDS.push(grid.flips[i].uuid)
                     }
                 }
-                for(let i = 0; i < res.flips.length; i++){
+                for (let i = 0; i < res.flips.length; i++) {
                     const indexOfMatch = processedUUIDS.indexOf(res.flips[i].uuid);
-                    if(indexOfMatch == -1){
+                    if (indexOfMatch == -1) {
                         // const bestItemImageMatch = items.get(stringSimilarity.findBestMatch(res.flips[i].item_name, itemsKeys).bestMatch.target).replaceAll(" ","_")+".webp"
                         // res.flips[i].item_image = bestItemImageMatch
-                        if(res.flips[i].head_url === "" || res.flips[i].head_url === "null"){
-                            res.flips[i].head_url = "https://hypixel-skyblock-item-images.pages.dev/"+res.flips[i].skyblock_id+".webp"
+                        if (res.flips[i].head_url === "" || res.flips[i].head_url === "null") {
+                            res.flips[i].head_url = "https://hypixel-skyblock-item-images.pages.dev/" + res.flips[i].skyblock_id + ".webp"
                         }
                         res.flips[i].processed = true
                     } else {
@@ -101,7 +107,7 @@ function getData(grid) {
                     }
                 }
                 flips = res.flips
-                if(!isRatelimited) {
+                if (!isRatelimited) {
                     grid.ready = true
                 }
                 grid.flips = flips
@@ -116,7 +122,7 @@ async function reloadToken() {
         webtoken: JSON.parse(window.localStorage.getItem("user_session_data")).refresh_token
     }))
         .then(res => {
-            if(res.status == 401){
+            if (res.status == 401) {
                 console.log("Got 401 when trying to reload token!!!")
                 window.localStorage.removeItem("user_session_data")
                 window.location.reload()
@@ -128,7 +134,7 @@ async function reloadToken() {
             temp.refresh_token = res.refresh_token
             temp.access_token = res.access_token
             let plUpdated = false
-            if(temp.priviledge_level !== res.priviledge_level){
+            if (temp.priviledge_level !== res.priviledge_level) {
                 plUpdated = true
                 temp.priviledge_level = res.priviledge_level
             }
