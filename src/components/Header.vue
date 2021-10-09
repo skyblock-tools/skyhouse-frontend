@@ -90,12 +90,12 @@
       <div class="avatar" v-if="isLoggedIn || mode == 2">
         <Avatar :pfpSrc="pfpSrc" />
       </div>
-      <a
-        href="#login"
+      <label
+        for="skyHouseLogin"
         class="btn btn-ghost"
         v-if="isNotLoggedIn && mode == 1"
         @click="loginButton"
-        >Login via discord</a
+        >Login via discord</label
       >
     </div>
   </div>
@@ -105,6 +105,7 @@
 <script>
 import SearchBar from "./SearchBar.vue";
 import Avatar from "./Avatar.vue";
+import Unauthorized from "./Auth/Unauthorized.vue";
 export default {
   name: "Header",
   components: { Avatar, SearchBar },

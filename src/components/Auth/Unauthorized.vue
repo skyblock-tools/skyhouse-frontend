@@ -31,6 +31,7 @@
             </div>
             <p>Securely logging you in via Discord...</p>
           </div>
+
         </div>
 
         <a class="btn btn-ghost" v-if="mode == 2" @click="joinDiscord">{{
