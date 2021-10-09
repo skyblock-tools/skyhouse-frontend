@@ -153,9 +153,9 @@ export default {
             title: "Generated new token!",
             description: "Click to copy the token!",
           }, {
-            position: "bottom-right",
+            position: "top-center",
             showIcon: "true",
-            type: "success",
+            type: "info",
             transition: "slide",
             hideProgressBar: "true",
             timeout: 4000,
@@ -174,12 +174,12 @@ export default {
         title: "Copied to clipboard!",
         description: "Paste this in-game chat!",
       }, {
-        position: "bottom-right",
+        position: "top-center",
         showIcon: "true",
         type: "success",
         transition: "slide",
         hideProgressBar: "true",
-        timeout: 5000,
+        timeout: 3000,
       });
     },
     logout() {

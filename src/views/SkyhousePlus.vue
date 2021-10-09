@@ -41,7 +41,8 @@
                 You will be redirected to the gateway to complete your purchase.
               </p>
               <div class="flex flex-row">
-                <a href="#" class="card shadow-xl image-full pt-6">
+
+                <a href="#" @click="soonTM" class="card shadow-xl image-full pt-6">
                   <figure>
                     <img src="../assets/stripe.jpg" class="rounded-2xl" />
                   </figure>
@@ -53,7 +54,7 @@
                 </a>
                 <label
                   for="Patreond"
-                  href="#"
+
                   class="card shadow-xl image-full pt-6 mx-3"
                 >
                   <figure>
@@ -97,6 +98,10 @@
 </template>
 
 <script>
+import {
+  createToast
+} from "mosha-vue-toastify";
+import "mosha-vue-toastify/dist/style.css";
 export default {
   name: "SkyhousePlus",
   data() {
@@ -151,64 +156,22 @@ export default {
     });
   },
   methods: {
-    genToken() {
-      this.token = "Please wait...";
-      fetch("https://api.skyblock.tools/api/auth/token/reset", {
-        method: "DELETE",
-        withCredentials: true,
-        credentials: "include",
-        headers: {
-          Authorization:
-            "Bearer " +
-            JSON.parse(window.localStorage.getItem("user_session_data"))
-              .access_token,
-        },
-      })
-        .then((x) => x.json())
-        .then((x) => {
-          this.token = "/shst " + x["mod_refresh_token"] + " site";
-          createToast(
-            {
-              title: "Generated new token!",
-              description: "Click to copy the token!",
-            },
-            {
-              position: "bottom-right",
-              showIcon: "true",
-              type: "success",
-              transition: "slide",
-              hideProgressBar: "true",
-              timeout: 4000,
-            }
-          );
-        });
-    },
-    copyToken() {
-      var TempText = document.createElement("input");
-      TempText.value = this.token;
-      document.body.appendChild(TempText);
-      TempText.select();
-
-      document.execCommand("copy");
-      document.body.removeChild(TempText);
+    soonTM() {
       createToast(
         {
-          title: "Copied to clipboard!",
-          description: "Paste this in-game chat!",
+          title: "This is not supported yet!",
+          description: "Payment gateway will be added soon!",
         },
         {
-          position: "bottom-right",
+          position: "top-center",
           showIcon: "true",
-          type: "success",
+          type: "danger",
           transition: "slide",
           hideProgressBar: "true",
           timeout: 5000,
+          
         }
       );
-    },
-    logout() {
-      window.localStorage.removeItem("user_session_data");
-      window.location.reload();
     },
   },
 };
