@@ -159,6 +159,8 @@ export default {
             transition: "slide",
             hideProgressBar: "true",
             timeout: 4000,
+            toastBackgroundColor: "#1f5df9",
+
           });
         });
     },
