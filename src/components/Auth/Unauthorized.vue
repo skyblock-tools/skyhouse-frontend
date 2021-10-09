@@ -12,7 +12,8 @@
         </p>
         <p class="mb-5" v-if="mode == 2">
           Skyhouse {{ name }} requires you to be a member of the skyblock.tools
-          discord server.
+          discord server. If you are already a member of the
+          server, please log out and log back in.
         </p>
 
         <label
@@ -34,7 +35,7 @@
 
         </div>
 
-        <a class="btn btn-ghost" v-if="mode == 2" @click="joinDiscord">{{
+        <a class="btn btn-accent" v-if="mode == 2" @click="joinDiscord">{{
           txt
         }}</a>
       </div>
@@ -80,7 +81,7 @@ export default {
 }
 
 .notInServer {
-  background-image: url("../../assets/shaderbg1.webp");
+  background-image: url("../../assets/shader3.webp");
 }
 
 .hero-content {

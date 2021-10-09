@@ -4,8 +4,8 @@
     :class="classname"
     :style="styles"
   >
-    <div class="flex-none lg:flex" v-if="isLoggedIn || mode == 2">
-      <button class="btn btn-square btn-ghost" v-on:click="hideSidebar">
+    <div class="flex-none lg:flex" >
+      <button class="btn btn-square btn-ghost" v-on:click="hideSidebar" v-if="isLoggedIn">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
@@ -139,7 +139,7 @@ export default {
         ".webp?size=512";
       if (this.mode == 2) {
         return false;
-      }
+      } 
       return true;
     },
     isNotLoggedIn() {
