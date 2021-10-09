@@ -22,7 +22,7 @@
       </button>
     </div>
     <div class="flex-1 px-2 mx-2 lg:flex">
-      <router-link to="/skyhouse"
+      <router-link to="/skyhouse/"
         ><span class="text-lg font-bold cursor-default select-none">
           Skyhouse
         </span></router-link

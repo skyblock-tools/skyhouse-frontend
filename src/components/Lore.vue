@@ -116,8 +116,14 @@ export default {
               break;
             case "l":
               boldCase = "lore-body-bold";
+              colorCode = "#FF55FF";
               break;
           }
+          if (token.includes("RIGHT CLICK")) {
+            colorCode = "#FFFF55";
+            boldCase = "lore-body-bold";
+          }
+
           if (lineIndex == lines.length - 1) {
             if (token.includes("LEGENDARY")) {
               colorCode = "#FFAA00";
@@ -139,6 +145,9 @@ export default {
               boldCase = "lore-body-bold";
             } else if (token.includes("SPECIAL")) {
               colorCode = "#FF5555";
+              boldCase = "lore-body-bold";
+            } else if (token.includes("COMMON")) {
+              colorCode = "#FFFFFF";
               boldCase = "lore-body-bold";
             }
 
@@ -204,7 +213,7 @@ export default {
   font-family: MC;
 }
 .lore-body-bold {
-  font-size: 1.1em;
+  font-size: 1.2em;
   font-family: MCBOLD;
 }
 </style>

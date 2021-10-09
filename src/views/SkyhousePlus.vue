@@ -168,8 +168,9 @@ export default {
           type: "danger",
           transition: "slide",
           hideProgressBar: "true",
-          timeout: 5000,
-          
+          timeout: 3000,
+          toastBackgroundColor: "#ff6f6f",
+
         }
       );
     },
