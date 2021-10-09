@@ -20,11 +20,12 @@
           ></path>
         </svg>
       </button>
+      <router-link to="/skyhouse"><img class="cursor-pointer h-9 " src="../assets/SH1.png"/></router-link>
+
     </div>
-    <div class="flex-1 px-2 mx-2 lg:flex">
-    <router-link to="/skyhouse"><img class="cursor-pointer" src="../assets/SH1.png"/></router-link>
-    </div>
+
     <div class="hidden px-2 mx-2 navbar-start lg:flex">
+
       <div class="flex items-stretch">
         <a
           class="btn btn-ghost btn-sm rounded-btn pagelink"
