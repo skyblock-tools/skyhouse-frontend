@@ -8,6 +8,7 @@
       h-screen
       shadow-lg
       text-center
+      starter
     "
   >
     <div class="overflow-auto opts-cont">
@@ -338,6 +339,19 @@ export default {
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   transition-duration: .35s;
   margin-left: -340.9px;
+}
+
+.starter {
+    animation: 0.3s starter;
+}
+
+@keyframes starter {
+  from {
+    margin-left: -340.9px;
+  }
+  to {
+    margin-left: 0;
+  }
 }
 
 .setting-desc {
