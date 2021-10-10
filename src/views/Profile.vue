@@ -1,5 +1,5 @@
 <template>
-<div class="box profBox xl:pl-80 xl:pr-80 xl:pt-8 transition-all" v-if="isLoggedIn">
+<div class="box profBox xl:mx-72 2xl:mx-96 pt-8 transition-all" v-if="isLoggedIn">
   <div class="user-overview">
     <div class="card card-side shadow-lg bg-base-200">
       <figure>

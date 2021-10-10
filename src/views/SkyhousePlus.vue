@@ -1,20 +1,19 @@
 <template>
-  <div class="box profBox xl:pl-80 xl:pr-80 xl:pt-8 transition-all">
-    <div class="card shadow-xl image-full">
-      <figure>
+  <div class="box profBox xl:mx-72 2xl:mx-96 xl:fixed transition-all" >
+    <div class="card shadow-xl image-full transition-all">
+      <figure style="height: 30rem;">
         <img src="../assets/shaderbg1.webp" class="rounded-2xl" />
       </figure>
-      <div class="justify-end card-body">
+      <div class="justify-evenly card-body">
         <h1 class="card-title text-3xl text-info">Skyhouse+</h1>
-        <p>
+        <p >
           Skyhouse+ is our way of having a premium on our services. The profits
           from this go solely towards maintaining the service and future
-          projects. By subscribing to Skyhouse+ you are directly supporting us
-          and you also receive benefits
+          projects.
         </p>
-        <div class="p-3">
-          <p class="card-title text-lg">Benefits Include:</p>
-
+        <p class="card-title pt-3 text-base italic">By subscribing to Skyhouse+ you are directly supporting us
+        and you also receive the following benefits:</p>
+        <div class="p-3 pt-0">
           <p>- No profit cap on BIN to BIN flips</p>
           <p>- Filters</p>
           <p>- Increased ratelimit</p>

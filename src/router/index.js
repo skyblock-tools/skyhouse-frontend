@@ -31,6 +31,11 @@ const routes = [
     component: OAuth2Callback,
     includeInHeader: false,
   },
+
+  { path: base, redirect: base + "/flipper" },
+
+
+
 ];
 
 const router = createRouter({

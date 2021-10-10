@@ -20,7 +20,7 @@
           ></path>
         </svg>
       </button>
-      <router-link to="/skyhouse"><img class="cursor-pointer h-9 " src="../assets/SH1.png"/></router-link>
+      <router-link to="/skyhouse"><img class="cursor-pointer h-9 " src="../assets/SH2.png"/></router-link>
 
     </div>
 
@@ -139,7 +139,7 @@ export default {
         ".webp?size=512";
       if (this.mode == 2) {
         return false;
-      } 
+      }
       return true;
     },
     isNotLoggedIn() {
