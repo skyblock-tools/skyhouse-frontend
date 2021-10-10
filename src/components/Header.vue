@@ -5,7 +5,8 @@
     :style="styles"
   >
     <div class="flex-none lg:flex" >
-      <button class="btn btn-square btn-ghost" v-on:click="hideSidebar" v-if="isLoggedIn">
+      <div v-if="isLoggedIn">
+      <button class="btn btn-square btn-ghost" v-on:click="hideSidebar" v-if="isOnFlipper">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
@@ -20,11 +21,12 @@
           ></path>
         </svg>
       </button>
-      <router-link to="/skyhouse"><img class="cursor-pointer h-9 " src="../assets/SH2.png"/></router-link>
+      </div>
+      <router-link to="/skyhouse"><img class="cursor-pointer h-9" src="../assets/SH2.png"/></router-link>
 
     </div>
 
-    <div class="hidden px-2 mx-2 navbar-start lg:flex">
+    <div class="hidden px-2 mx-2 navbar-start lg:flex transition-all">
 
       <div class="flex items-stretch">
         <a
@@ -144,6 +146,11 @@ export default {
     },
     isNotLoggedIn() {
       return !this.isLoggedIn;
+    },
+    isOnFlipper() {
+      if (this.$route.path == "/skyhouse/flipper"){
+        return true;
+      }
     },
   },
   created() {
