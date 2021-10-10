@@ -41,7 +41,7 @@
         </a>
       </div>
     </div>
-    <div class="dropdown dropdown-end dropdown-hover">
+    <div class="dropdown dropdown-end dropdown-hover navbar-end">
       <div class="lg:hidden flex-none">
         <button class="btn btn-square btn-ghost">
           <svg

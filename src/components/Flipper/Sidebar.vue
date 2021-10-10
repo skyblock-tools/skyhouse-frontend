@@ -330,29 +330,14 @@ export default {
 }
 
 .slideIn {
-  animation: 0.3s slideIn;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: .25s;
+  margin-left: 0;
 }
 .slideOut {
-  animation: 0.3s slideOut;
-  animation-fill-mode: forwards;
-}
-
-@keyframes slideOut {
-  from {
-    margin-left: 0;
-  }
-  to {
-    margin-left: -340.9px;
-  }
-}
-
-@keyframes slideIn {
-  from {
-    margin-left: -340.9px;
-  }
-  to {
-    margin-left: 0;
-  }
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: .35s;
+  margin-left: -340.9px;
 }
 
 .setting-desc {

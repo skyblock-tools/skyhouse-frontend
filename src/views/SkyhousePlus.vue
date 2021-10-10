@@ -1,8 +1,11 @@
 <template>
   <div class="box profBox xl:mx-72 2xl:mx-96 xl:fixed transition-all" >
     <div class="card shadow-xl image-full transition-all">
-      <figure style="height: 30rem;">
-        <img src="../assets/shaderbg1.webp" class="rounded-2xl" />
+      <figure style="height: 30rem;" v-if="skyhousePlus">
+        <img src="../assets/has_skyhouse.png" class="rounded-2xl" />
+      </figure>
+      <figure style="height: 30rem;" v-if="!skyhousePlus">
+        <img src="../assets/not_skyhouse.png" class="rounded-2xl" />
       </figure>
       <div class="justify-evenly card-body">
         <h1 class="card-title text-3xl text-info">Skyhouse+</h1>
