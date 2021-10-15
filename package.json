@@ -1,6 +1,7 @@
 {
   "name": "skyhouse",
   "version": "2.1.5",
+  "private": true,
   "scripts": {
     "dev": "vite",
     "build": "vite build",

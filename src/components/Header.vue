@@ -4,30 +4,34 @@
     :class="classname"
     :style="styles"
   >
-    <div class="flex-none lg:flex" >
+    <div class="flex-none lg:flex">
       <div v-if="isLoggedIn">
-      <button class="btn btn-square btn-ghost" v-on:click="hideSidebar" v-if="isOnFlipper">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 24 24"
-          class="inline-block w-6 h-6 stroke-current"
+        <button
+          class="btn btn-square btn-ghost"
+          v-on:click="hideSidebar"
+          v-if="isOnFlipper"
         >
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-            d="M4 6h16M4 12h16M4 18h16"
-          ></path>
-        </svg>
-      </button>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            class="inline-block w-6 h-6 stroke-current"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M4 6h16M4 12h16M4 18h16"
+            ></path>
+          </svg>
+        </button>
       </div>
-      <router-link to="/skyhouse"><img class="cursor-pointer h-9" src="../assets/SH2.png"/></router-link>
-
+      <router-link to="/skyhouse"
+        ><img class="cursor-pointer h-9" src="../assets/SH2.png"
+      /></router-link>
     </div>
 
     <div class="hidden px-2 mx-2 navbar-start lg:flex transition-all">
-
       <div class="flex items-stretch">
         <a
           class="btn btn-ghost btn-sm rounded-btn pagelink"
@@ -148,7 +152,7 @@ export default {
       return !this.isLoggedIn;
     },
     isOnFlipper() {
-      if (this.$route.path == "/skyhouse/flipper"){
+      if (this.$route.path == "/skyhouse/flipper") {
         return true;
       }
     },
