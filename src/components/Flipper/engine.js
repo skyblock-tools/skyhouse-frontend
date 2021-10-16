@@ -27,7 +27,7 @@ If anyone asks, it's "a complex optimisation algorithm to improve performance on
 function checkHumanPresence(callback) {
     createToast({
         title: 'Are you still there? ',
-        description: 'Close this message to continue refreshing'
+        description: 'Close this message to continue refreshing',
     },
         {
             transition: 'slide',
@@ -38,6 +38,7 @@ function checkHumanPresence(callback) {
             showIcon: 'true',
             timeout: -1,
             hideProgressBar: 'true',
+            onClose: callback,
         })
 }
 
