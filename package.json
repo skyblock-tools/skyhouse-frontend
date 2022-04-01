@@ -1,6 +1,7 @@
 {
 	"name": "skyhouse",
 	"version": "3.0",
+	"description": "auction frontend",
 	"private": true,
 	"dependencies": {
 		"@fontsource/inter": "^4.5.4",

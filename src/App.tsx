@@ -6,12 +6,18 @@ import { StoreProvider } from 'easy-peasy';
 import { Profile } from '@/state/user';
 import { store } from '@/state';
 import Loading from '@/components/Loading';
-import BaseRouter from '@/routers/BaseRouter';
+import AppRouter from '@/routers/AppRouter';
+import AuthRouter from '@/routers/AuthRouter';
 import Navigation from '@/components/Navigation';
 
-const Routes = {
+const AuthRoutes = {
 	'/': () => <Redirect to={`skyhouse`} />,
-	'/skyhouse*': () => <BaseRouter />,
+	'/skyhouse*': () => <AppRouter />,
+};
+
+const NoAuthRoutes = {
+	'/': () => <Redirect to={`skyhouse`} />,
+	'/skyhouse*': () => <AuthRouter />,
 };
 
 const App = () => {
@@ -25,14 +31,18 @@ const App = () => {
 		});
 	}
 
-	const GlobalRoute = useRoutes(Routes);
+	const GlobalRoute = useRoutes(AuthRoutes);
+	const NeedLogin = useRoutes(NoAuthRoutes);
+
 	return (
 		<>
 			<GlobalStyles />
 			<CustomStyles />
 			<StoreProvider store={store}>
 				<Navigation />
-				<Suspense fallback={<Loading />}>{GlobalRoute}</Suspense>
+				<Suspense fallback={<Loading />}>
+					{userSessionData == null || userSessionData?.privilege_level == 0 || userSessionData?.privilege_level == 1 ? NeedLogin : GlobalRoute}
+				</Suspense>
 			</StoreProvider>
 		</>
 	);
