@@ -1,7 +1,6 @@
 {
 	"name": "skyhouse",
 	"version": "3.0",
-	"description": "The new Pterodactyl Market frontend.",
 	"private": true,
 	"dependencies": {
 		"@fontsource/inter": "^4.5.4",
