@@ -1,0 +1,15 @@
+{
+	"presets": ["@babel/preset-env", "@babel/preset-typescript"],
+	"plugins": [
+		[
+			"@babel/plugin-transform-react-jsx",
+			{
+				"runtime": "automatic",
+				"importSource": "preact"
+			}
+		],
+		"macros",
+		"styled-components",
+		"@babel/transform-runtime"
+	]
+}
