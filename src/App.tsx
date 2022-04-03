@@ -25,9 +25,10 @@ const App = () => {
 	if (!store.getState().user.data) {
 		store.getActions().user.setUserData({
 			username: userSessionData?.discord_info.username,
-			privilege_level: userSessionData?.privilege_level,
+			privilege_level: userSessionData == null ? 1 : userSessionData?.privilege_level == 0 ? 2 : 1 || (userSessionData?.privilege_level == 3 && 3),
 			discord_info: userSessionData?.discord_info,
 			session_data: userSessionData,
+			skyhouse_plus: userSessionData?.privilege_level > 1,
 		});
 	}
 

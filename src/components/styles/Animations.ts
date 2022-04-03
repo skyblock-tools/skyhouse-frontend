@@ -1,6 +1,5 @@
 const Animations = `
 	animation: pop var(--animation-btn, 0.25s) ease-out;
-	text-transform: var(--btn-text-case, uppercase);
 	&:active:hover,
 	&:active:focus {
 		animation: none;

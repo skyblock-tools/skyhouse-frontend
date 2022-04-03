@@ -9,6 +9,8 @@ module.exports = {
 		extend: {
 			colors: {
 				sky: colors.sky,
+				zinc: colors.zinc,
+				neutral: colors.neutral,
 			},
 		},
 	},

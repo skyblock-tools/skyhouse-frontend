@@ -3,7 +3,7 @@ import tw from 'twin.macro';
 
 const CustomStyles = createGlobalStyle`
 	body {
-		${tw`bg-gray-900 text-gray-50 overscroll-none`}
+		${tw`bg-zinc-800 text-zinc-50 overscroll-none`}
 	}
 `;
 
