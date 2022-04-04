@@ -1,3 +1,5 @@
+import { createToast } from 'mosha-vue-toastify';
+
 let flips = [];
 
 function sleep(ms) {
@@ -6,9 +8,21 @@ function sleep(ms) {
 
 let isRunning = true;
 let requestsWithoutCheck = 0;
+
 let isRatelimited = false;
 let isReloading = false;
 
+/*
+Very basic function to check for human presence.
+This isn't designed to stop automation, just to prevent spam from browsers when the user is not monitoring the content
+
+This is mainly to reduce the load on the server
+but it will also help performance for the client, very slightly.
+Almost certainly to an unnoticable degree.
+Unless you're using google chrome, then it will reduce memory usage for this page from 12.5GiB to 10GiB.
+
+If anyone asks, it's "a complex optimisation algorithm to improve performance on your computer".
+*/
 function checkHumanPresence(callback) {
 	createToast(
 		{

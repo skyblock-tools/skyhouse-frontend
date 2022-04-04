@@ -9,6 +9,7 @@ import Loading from '@/components/Loading';
 import AppRouter from '@/routers/AppRouter';
 import AuthRouter from '@/routers/AuthRouter';
 import Navigation from '@/components/Navigation';
+import { Toaster } from 'react-hot-toast';
 
 const AuthRoutes = {
 	'/': () => <Redirect to={`skyhouse`} />,
@@ -39,6 +40,7 @@ const App = () => {
 		<>
 			<GlobalStyles />
 			<CustomStyles />
+			<Toaster />
 			<StoreProvider store={store}>
 				<Navigation />
 				<Suspense fallback={<Loading />}>

@@ -17,8 +17,7 @@ const NavLink = (props: any) => {
 				Animations,
 				tw`transition duration-150 rounded-lg px-3 py-1.5 mx-1 text-sm text-sky-100 text-center font-semibold hover:text-sky-200`,
 				active && tw`bg-zinc-600/40 hover:text-sky-100`,
-			]}
-		>
+			]}>
 			{props.name}
 		</Link>
 	);
@@ -66,8 +65,7 @@ const NavBar = () => {
 										stroke="currentColor"
 										stroke-linecap="round"
 										stroke-linejoin="round"
-										stroke-width="24"
-									></line>
+										stroke-width="24"></line>
 									<line
 										x1="40"
 										y1="64"
@@ -77,8 +75,7 @@ const NavBar = () => {
 										stroke="currentColor"
 										stroke-linecap="round"
 										stroke-linejoin="round"
-										stroke-width="24"
-									></line>
+										stroke-width="24"></line>
 									<line
 										x1="40"
 										y1="192"
@@ -88,8 +85,7 @@ const NavBar = () => {
 										stroke="currentColor"
 										stroke-linecap="round"
 										stroke-linejoin="round"
-										stroke-width="24"
-									></line>
+										stroke-width="24"></line>
 								</svg>
 							</button>
 							<Link href="/" css={tw`flex items-center transition hover:bg-zinc-600/10 -my-1 rounded-lg py-1 px-2`}>
@@ -112,19 +108,16 @@ const NavBar = () => {
 							<NavLink href="/skyhouse/skyhouse+" name="SKYHOUSE+" />
 						</div>
 					</div>
-					<div tw="flex items-center -my-1">
+					<div tw="flex items-center">
+						<button onClick={() => Logout()}>L</button>
 						{loginStatus ? (
-							<div
-								onClick={() => Logout()}
-								tw="relative flex h-10 w-10 select-none items-center justify-center rounded-full bg-zinc-100 text-sm font-bold uppercase text-zinc-800"
-							>
-								<img tw="h-full w-full rounded-full object-cover object-center" src={avatar} />
+							<div tw="relative flex h-10 w-10 select-none items-center justify-center rounded-full text-sm font-bold uppercase text-zinc-800 ring-2 ring-zinc-700">
+								<img tw="h-full w-full rounded-full object-cover object-center shadow-md" src={avatar} />
 							</div>
 						) : (
 							<button
 								onClick={() => LoginViaDiscord()}
-								css={[Animations, tw`rounded-lg px-4 py-3 font-semibold text-sky-100 transition hover:bg-zinc-600/40 text-sm`]}
-							>
+								css={[Animations, tw` -my-0.5 rounded-lg px-4 py-3 font-semibold text-sky-100 transition hover:bg-zinc-600/40 text-sm`]}>
 								LOGIN VIA DISCORD
 							</button>
 						)}

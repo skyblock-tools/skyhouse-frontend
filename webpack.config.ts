@@ -4,6 +4,7 @@ import 'webpack-dev-server';
 import { merge } from 'webpack-merge';
 import Dotenv from 'dotenv-webpack';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
+import { VueLoaderPlugin } from 'vue-loader';
 
 const config: webpack.Configuration = {
 	target: 'web',
@@ -32,6 +33,10 @@ const config: webpack.Configuration = {
 				test: /\.(png|jp(e?)g|gif|svg|webp|woff|woff2)$/,
 				type: 'asset/resource',
 			},
+			{
+				test: /\.vue$/,
+				loader: 'vue-loader',
+			},
 		],
 	},
 	resolve: {
@@ -45,7 +50,7 @@ const config: webpack.Configuration = {
 		},
 		symlinks: false,
 	},
-	plugins: [new HtmlWebpackPlugin(), new Dotenv()],
+	plugins: [new HtmlWebpackPlugin(), new Dotenv(), new VueLoaderPlugin()],
 };
 
 const devConfig: webpack.Configuration = {
